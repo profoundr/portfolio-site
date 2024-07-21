@@ -1,6 +1,5 @@
 "use client";
 import useEmblaCarousel from "embla-carousel-react";
-import { WebsiteCard } from "../page";
 import { useKeenSlider } from "keen-slider/react"; // import from 'keen-slider/react.es' for to get an ES module
 import "keen-slider/keen-slider.min.css";
 import EmblaCarousel from "./Embla/EmblaCarousel";
@@ -59,6 +58,15 @@ export function Slider() {
       <div className="keen-slider__slide w-[500px] flex justify-center items-center h-[500px] bg-slate-500 ">
         6
       </div>
+    </div>
+  );
+}
+
+
+function WebsiteCard({ number }: { number: number }) {
+  return (
+    <div className="w-1/2 flex items-center">
+      <span>{number}</span>
     </div>
   );
 }

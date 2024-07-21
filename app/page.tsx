@@ -6,7 +6,6 @@ export default function Home() {
     <main className="flex min-h-screen p-24">
       <div className="flex w-full max-w-screen-xl">
         <FirstColumn />
-
         <SecondColumn />
       </div>
     </main>
@@ -134,10 +133,4 @@ function FirstColumn() {
 
 
 
-export function WebsiteCard({ number }: { number: number }) {
-  return (
-    <div className="w-1/2 flex items-center">
-      <span>{number}</span>
-    </div>
-  );
-}
+
