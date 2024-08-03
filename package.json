@@ -9,12 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "embla-carousel": "^8.1.6",
     "embla-carousel-react": "^8.1.6",
+    "framer-motion": "^11.3.8",
     "keen-slider": "^6.8.6",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "swiper": "^11.1.5",
+    "tailwind-merge": "^2.4.0"
   },
   "devDependencies": {
     "@types/node": "^20",

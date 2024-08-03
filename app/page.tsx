@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SecondColumn } from "./components/SecondColumn";
+import { ExpandableCardDemo } from "./components/Embla/ExpandableCard";
 
 export default function Home() {
   return (

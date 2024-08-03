@@ -21,6 +21,9 @@ const config: Config = {
         'screen-3xl': '1980px',
       }
     },
+    // colors: {
+    //   'accent': '#2f2f2f',
+    // }
   },
   plugins: [],
 };
