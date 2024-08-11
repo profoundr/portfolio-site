@@ -132,6 +132,7 @@ export function ExpandableCardDemo() {
         ) : null}
       </AnimatePresence>
       {/* <ul className="mx-auto w-full items-start gap-4"> */}
+      {/* // This is the card that is always visible */}
         {cards.slice(0,1).map((card, index) => (
           <motion.div
             layoutId={`card-${card.title}-${id}`}
