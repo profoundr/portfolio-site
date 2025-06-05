@@ -403,12 +403,19 @@ const SlideComponent = React.forwardRef<
     // Positioning
     useEffect(() => {
       if (imgWrapRef.current) {
+        // Guard against invalid positionIndex
+        if (positionIndex < 0 || positionIndex >= transforms.length) {
+          // If positionIndex is invalid, hide the slide or set to a default safe state
+          gsap.set(imgWrapRef.current, { opacity: 0 });
+          return;
+        }
+
         gsap.set(imgWrapRef.current, {
           x: transforms[positionIndex].x,
           y: transforms[positionIndex].y,
           rotationX: 0,
           rotationY: 0,
-          opacity: isCurrent || isVisible ? 1 : 0, // Simplified visibility
+          opacity: isCurrent || isVisible ? 1 : 0,
           rotationZ: transforms[positionIndex].rotation,
         });
       }
@@ -505,20 +512,6 @@ const SlideComponent = React.forwardRef<
       }
     }, [isCurrent, allowTilt, transforms, positionIndex, isContentOpen]);
 
-    useEffect(() => {
-      const currentImgWrap = imgWrapRef.current;
-      if (currentImgWrap) {
-        currentImgWrap.addEventListener("mouseenter", mouseenterFn as any);
-        currentImgWrap.addEventListener("mousemove", mousemoveFn as any);
-        currentImgWrap.addEventListener("mouseleave", mouseleaveFn as any);
-        return () => {
-          currentImgWrap.removeEventListener("mouseenter", mouseenterFn as any);
-          currentImgWrap.removeEventListener("mousemove", mousemoveFn as any);
-          currentImgWrap.removeEventListener("mouseleave", mouseleaveFn as any);
-        };
-      }
-    }, [mouseenterFn, mousemoveFn, mouseleaveFn]);
-
     // Text animations (simplified for now)
     const showTexts = useCallback((animate = true) => {
       gsap.set([titleWrapRef.current, sideRef.current], { opacity: 1 });
@@ -582,24 +575,36 @@ const SlideComponent = React.forwardRef<
             resolve();
             return;
           }
+          // Guard against invalid settings.position + 2
+          const targetTransformIndex = settings.position + 2;
+          if (
+            targetTransformIndex < 0 ||
+            targetTransformIndex >= transforms.length
+          ) {
+            console.warn(
+              "Invalid target position in moveToPosition:",
+              settings.position
+            );
+            // Optionally, handle this more gracefully, e.g., by not animating or resolving immediately
+            resolve();
+            return;
+          }
+
           gsap.to(imgWrapRef.current, {
             duration: 0.8,
             ease: Power4.easeInOut,
             delay: settings.delay || 0,
-            x: transforms[settings.position + 2].x,
-            y: transforms[settings.position + 2].y,
+            x: transforms[targetTransformIndex].x,
+            y: transforms[targetTransformIndex].y,
             rotationX: 0,
             rotationY: 0,
-            rotationZ: transforms[settings.position + 2].rotation,
+            rotationZ: transforms[targetTransformIndex].rotation,
             opacity: 1,
             onStart:
               settings.from !== undefined
                 ? () => {
                     gsap.set(imgWrapRef.current, {
                       opacity: 1,
-                      // x: transforms[settings.from + 2].x,
-                      // y: transforms[settings.from + 2].y,
-                      // rotationZ: transforms[settings.from+2].rotation
                     });
                   }
                 : undefined,

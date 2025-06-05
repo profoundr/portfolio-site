@@ -1,8 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState, useId, useRef, useEffect } from "react";
 // Removed: import type { SlideData } from "@/components/GSAPCarousel";
-import DiagonalSlideshow from "@/components/GSAPComp2";
+import { VerticalCarousel } from "@/components/verticalCarousel";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import { useOutsideClick } from "@/hooks/use-outside-click";
+import WebGLFluidEnhanced from "webgl-fluid-enhanced";
 
 // Define the structure of DUMMY_SLIDES_DATA items for clarity in mapping
 interface DummySlideItem {
@@ -121,12 +125,116 @@ const mappedContent: MappedContentData[] = DUMMY_SLIDES_DATA.map((item) => ({
 }));
 
 export default function TestCarouselPage() {
+  const [active, setActive] = useState<
+    (typeof DUMMY_SLIDES_DATA)[number] | null
+  >(null);
+  const id = useId();
+  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const simulation = new WebGLFluidEnhanced(containerRef.current);
+
+      // Color palette from user
+      const colorPalette = ["#FFFFFF"];
+
+      // Configure the simulation with the provided config
+      // simulation.setConfig({
+      //   dyeResolution: 250,
+      //   densityDissipation: 0.5,
+      //   velocityDissipation: 0,
+      //   backgroundColor: "#000000",
+      //   pressure: 0.5,
+      //   curl: 5,
+      //   colorPalette,
+      //   hover: false,
+      //   transparent: false,
+      //   bloom: false,
+      //   bloomIterations: 88,
+      // });
+
+      simulation.setConfig({
+        colorPalette,
+        inverted: true,
+        hover: false,
+        brightness: 0.3,
+      });
+
+      simulation.start();
+
+      // Function to create a random splat
+      const randomSplat = () => {
+        // const x = Math.random() * window.innerWidth;
+        // const y = Math.random() * window.innerHeight;
+        // const color =
+        //   colorPalette[Math.floor(Math.random() * colorPalette.length)];
+        // simulation.splatAtLocation(x, y, 12, 12, color);
+        simulation.multipleSplats(20);
+      };
+
+      // Add a few initial splats
+      for (let i = 0; i < 6; i++) randomSplat();
+
+      // Keep creating splats every 3 seconds
+      const interval = setInterval(randomSplat, 2000);
+
+      return () => {
+        clearInterval(interval);
+        simulation.stop();
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setActive(null);
+      }
+    }
+
+    if (active) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [active]);
+
+  useOutsideClick(ref, () => setActive(null));
+
   if (!DUMMY_SLIDES_DATA || DUMMY_SLIDES_DATA.length === 0) {
     return <div>Loading carousel data...</div>;
   }
-  // The DiagonalSlideshow component uses defaultSlidesData and defaultContentData internally if props are not provided.
-  // To use DUMMY_SLIDES_DATA, we pass our mapped versions.
+
+  // Transform DUMMY_SLIDES_DATA into slides for VerticalCarousel
+  const slides = DUMMY_SLIDES_DATA.map((item) => ({
+    key: item.id,
+    image: item.image,
+    title: item.title,
+    subtitle: item.sideText,
+    content: {
+      subtitle: item.detailedContent.subtitle,
+      mainText: item.detailedContent.mainText,
+    },
+  }));
+
   return (
-    <DiagonalSlideshow slidesData={mappedSlides} contentData={mappedContent} />
+    <div className="relative h-screen w-full overflow-hidden ">
+      <div
+        ref={containerRef}
+        className="absolute inset-0 w-full h-full z-0"
+        style={{ width: "100%", height: "100%", pointerEvents: "none" }}
+      />
+      <div className="fixed top-0 left-0 w-full h-full z-[100]">
+        <VerticalCarousel
+          slides={slides}
+          offsetRadius={2}
+          showNavigation={true}
+        />
+      </div>
+    </div>
   );
 }
