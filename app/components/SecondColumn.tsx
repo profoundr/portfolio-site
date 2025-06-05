@@ -22,16 +22,16 @@ export function SecondColumn() {
 
   return (
     <div className="w-1/2 flex flex-col items-start">
-      {/* EMBLA
-      <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+      {/* EMBLA */}
+      {/* <EmblaCarousel slides={SLIDES} options={OPTIONS} /> */}
       <span className="mt-[60px]">NORMAL FLEX</span>
       <NormalFlex />
-      SWIPER
+      {/* SWIPER
       <SwiperSlider />
       KEEN Slider
-      <KeenSlider /> */}
-      FRAMER MOTION SLIDER
-      <FramerMotionSlider />
+      <KeenSlider />
+      FRAMER MOTION SLIDER */}
+      {/* <FramerMotionSlider /> */}
       {/* <Slider /> */}
     </div>
   );
@@ -211,7 +211,7 @@ function FramerMotionSlider() {
             }
           }}
         >
-Í          <ExpandableCardDemo />
+          Í <ExpandableCardDemo />
         </motion.div>
       </AnimatePresence>
       <div className="next" onClick={() => paginate(1)}>

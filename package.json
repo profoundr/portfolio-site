@@ -9,18 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/styled-components": "^5.1.34",
+    "charming": "^3.0.2",
     "clsx": "^2.1.1",
     "embla-carousel": "^8.1.6",
     "embla-carousel-react": "^8.1.6",
-    "framer-motion": "^11.3.8",
+    "framer-motion": "^11.18.2",
+    "gsap": "^3.13.0",
+    "imagesloaded": "^5.0.0",
     "keen-slider": "^6.8.6",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-intersection-observer": "^9.16.0",
+    "styled-components": "^6.1.18",
     "swiper": "^11.1.5",
     "tailwind-merge": "^2.4.0"
   },
   "devDependencies": {
+    "@types/imagesloaded": "^4.1.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
