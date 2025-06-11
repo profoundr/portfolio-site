@@ -1,93 +1,19 @@
 "use client";
 
-import React, { useState, useId, useRef, useEffect } from "react";
+import React, { useState, useId, useRef, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
 // Removed: import type { SlideData } from "@/components/GSAPCarousel";
 import { VerticalCarousel } from "@/components/verticalCarousel";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import WebGLFluidEnhanced from "webgl-fluid-enhanced";
+import FirstColumn from "../components/FirstColumn";
+import { BackgroundBeams } from "@/components/ui/backgrounds/fade-lines";
+import { AuroraBackground } from "@/components/ui/backgrounds/aurora";
+import { SlidesData } from "@/data/portfolio-data";
 
-// Define the structure of DUMMY_SLIDES_DATA items for clarity in mapping
-interface DummySlideItem {
-  id: number;
-  image: string;
-  title: string;
-  number: string;
-  sideText: string;
-  detailedContent: {
-    subtitle: string;
-    mainText: string;
-  };
-}
-
-const DUMMY_SLIDES_DATA: DummySlideItem[] = [
-  {
-    id: 1,
-    image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Azure Peaks",
-    number: "01",
-    sideText: "Mountain Serenity",
-    detailedContent: {
-      subtitle: "Whispers of the Wild",
-      mainText:
-        "Breathe in the crisp mountain air and witness the grandeur of Azure Peaks. A sanctuary where nature's artistry is on full display, offering moments of profound peace and untamed beauty.",
-    },
-  },
-  {
-    id: 2,
-    image:
-      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Silent Valley",
-    number: "02",
-    sideText: "Tranquil Waters",
-    detailedContent: {
-      subtitle: "Reflections of Stillness",
-      mainText:
-        "Silent Valley, a hidden gem where time slows. The placid lake mirrors the sky, surrounded by ancient forests, inviting quiet contemplation and a deep connection with the earth.",
-    },
-  },
-  {
-    id: 3,
-    image:
-      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Coastal Dreams",
-    number: "03",
-    sideText: "Ocean's Embrace",
-    detailedContent: {
-      subtitle: "Where Sand Meets Sea",
-      mainText:
-        "Let the rhythm of the waves soothe your soul. Coastal Dreams is a stretch of pristine beach where the golden sands meet the endless azure, a perfect escape to rejuvenate and dream.",
-    },
-  },
-  {
-    id: 4,
-    image:
-      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Urban Canvas",
-    number: "04",
-    sideText: "City's Pulse",
-    detailedContent: {
-      subtitle: "Vibrancy in Concrete",
-      mainText:
-        "Experience the dynamic energy of Urban Canvas. A city that never sleeps, painted with bright lights, architectural marvels, and the diverse stories of its inhabitants. A symphony of modern life.",
-    },
-  },
-  {
-    id: 5,
-    image:
-      "https://images.unsplash.com/photo-1519985176271-adb1088fa94c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "Enchanted Forest",
-    number: "05",
-    sideText: "Mystic Woods",
-    detailedContent: {
-      subtitle: "Secrets of the Ancients",
-      mainText:
-        "Step into the Enchanted Forest, where sunlight filters through ancient canopies, and whispers of old magic linger in the air. A realm of mystery and wonder, waiting to be explored.",
-    },
-  },
-];
+// Define the structure of SlidesData items for clarity in mapping
 
 // Types matching GSAPComp2's internal SlideData and ContentData interfaces
 interface MappedSlideData {
@@ -107,7 +33,7 @@ interface MappedContentData {
   text: string;
 }
 
-const mappedSlides: MappedSlideData[] = DUMMY_SLIDES_DATA.map((item) => ({
+const mappedSlides: MappedSlideData[] = SlidesData.map((item) => ({
   id: `s${item.id}`,
   imageUrl: item.image,
   sideText: item.sideText,
@@ -116,7 +42,7 @@ const mappedSlides: MappedSlideData[] = DUMMY_SLIDES_DATA.map((item) => ({
   subtitle: item.detailedContent.subtitle,
 }));
 
-const mappedContent: MappedContentData[] = DUMMY_SLIDES_DATA.map((item) => ({
+const mappedContent: MappedContentData[] = SlidesData.map((item) => ({
   id: `c${item.id}`,
   number: parseInt(item.number, 10),
   title: item.title,
@@ -125,9 +51,9 @@ const mappedContent: MappedContentData[] = DUMMY_SLIDES_DATA.map((item) => ({
 }));
 
 export default function TestCarouselPage() {
-  const [active, setActive] = useState<
-    (typeof DUMMY_SLIDES_DATA)[number] | null
-  >(null);
+  const [active, setActive] = useState<(typeof SlidesData)[number] | null>(
+    null
+  );
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -137,7 +63,7 @@ export default function TestCarouselPage() {
       const simulation = new WebGLFluidEnhanced(containerRef.current);
 
       // Color palette from user
-      const colorPalette = ["#FFFFFF"];
+      const colorPalette = ["#2f2f2f"];
 
       // Configure the simulation with the provided config
       // simulation.setConfig({
@@ -156,6 +82,9 @@ export default function TestCarouselPage() {
 
       simulation.setConfig({
         colorPalette,
+        backgroundColor: "#000000",
+        simResolution: 250,
+        splatForce: 1000,
         inverted: true,
         hover: false,
         brightness: 0.3,
@@ -205,12 +134,12 @@ export default function TestCarouselPage() {
 
   useOutsideClick(ref, () => setActive(null));
 
-  if (!DUMMY_SLIDES_DATA || DUMMY_SLIDES_DATA.length === 0) {
+  if (!SlidesData || SlidesData.length === 0) {
     return <div>Loading carousel data...</div>;
   }
 
-  // Transform DUMMY_SLIDES_DATA into slides for VerticalCarousel
-  const slides = DUMMY_SLIDES_DATA.map((item) => ({
+  // Transform SlidesData into slides for VerticalCarousel
+  const slides = SlidesData.map((item) => ({
     key: item.id,
     image: item.image,
     title: item.title,
@@ -223,18 +152,41 @@ export default function TestCarouselPage() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden ">
-      <div
+      {/* <div
         ref={containerRef}
         className="absolute inset-0 w-full h-full z-0"
         style={{ width: "100%", height: "100%", pointerEvents: "none" }}
-      />
-      <div className="fixed top-0 left-0 w-full h-full z-[100]">
+      /> */}
+      {/* <BackgroundBeams /> */}
+      <AuroraBackground className="absolute grid grid-cols-[repeat(15,minmax(0,1fr))] top-0 right-0 w-full h-full z-[100]">
+        {/* <motion.div
+            initial={{ opacity: 0.0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.3,
+              duration: 0.8,
+              ease: "easeInOut",
+            }}
+            className="relative flex flex-col gap-4 items-center justify-center px-4"
+          >
+            <div className="text-3xl md:text-7xl font-bold dark:text-white text-center">
+              Background lights are cool you know.
+            </div>
+            <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
+              And this, is chemical burn.
+            </div>
+            <button className="bg-black dark:bg-white rounded-full w-fit text-white dark:text-black px-4 py-2">
+              Debug now
+            </button>
+          </motion.div> */}
+        <FirstColumn />
+
         <VerticalCarousel
           slides={slides}
           offsetRadius={2}
           showNavigation={true}
         />
-      </div>
+      </AuroraBackground>{" "}
     </div>
   );
 }

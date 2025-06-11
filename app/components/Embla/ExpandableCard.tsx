@@ -32,7 +32,7 @@ export function ExpandableCardDemo() {
 
   return (
     <>
-     {/* This is the overlay bg that appears when the card is clicked */}
+      {/* This is the overlay bg that appears when the card is clicked */}
       <AnimatePresence>
         {active && typeof active === "object" && (
           <motion.div
@@ -133,40 +133,40 @@ export function ExpandableCardDemo() {
       </AnimatePresence>
       {/* <ul className="mx-auto w-full items-start gap-4"> */}
       {/* // This is the card that is always visible */}
-        {cards.slice(0,1).map((card, index) => (
-          <motion.div
-            layoutId={`card-${card.title}-${id}`}
-            key={card.title}
-            onClick={() => setActive(card)}
-            className="flex flex-col bg-neutral-800 rounded-xl cursor-pointer w-full"
-          >
-            <div className="flex gap-4 flex-col  w-full">
-              <motion.div layoutId={`image-${card.title}-${id}`}>
-                <Image
-                  width={100}
-                  height={100}
-                  src={card.src}
-                  alt={card.title}
-                  className="h-60 w-full  rounded-lg object-cover object-top"
-                />
-              </motion.div>
-              <div className="flex justify-center items-center flex-col">
-                <motion.h3
-                  layoutId={`title-${card.title}-${id}`}
-                  className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left text-base"
-                >
-                  {card.title}
-                </motion.h3>
-                <motion.p
-                  layoutId={`description-${card.description}-${id}`}
-                  className="text-neutral-600 dark:text-neutral-400 text-center md:text-left text-base"
-                >
-                  {card.description}
-                </motion.p>
-              </div>
+      {cards.slice(0, 1).map((card, index) => (
+        <motion.div
+          layoutId={`card-${card.title}-${id}`}
+          key={card.title}
+          onClick={() => setActive(card)}
+          className="flex flex-col bg-neutral-800 rounded-xl cursor-pointer w-full"
+        >
+          <div className="flex gap-4 flex-col  w-full">
+            <motion.div layoutId={`image-${card.title}-${id}`}>
+              <Image
+                width={100}
+                height={100}
+                src={card.src}
+                alt={card.title}
+                className="h-60 w-full  rounded-lg object-cover object-top"
+              />
+            </motion.div>
+            <div className="flex justify-center items-center flex-col">
+              <motion.h3
+                layoutId={`title-${card.title}-${id}`}
+                className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left text-base"
+              >
+                {card.title}
+              </motion.h3>
+              <motion.p
+                layoutId={`description-${card.description}-${id}`}
+                className="text-neutral-600 dark:text-neutral-400 text-center md:text-left text-base"
+              >
+                {card.description}
+              </motion.p>
             </div>
-          </motion.div>
-        ))}
+          </div>
+        </motion.div>
+      ))}
       {/* </ul> */}
     </>
   );

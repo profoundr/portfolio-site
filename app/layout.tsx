@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 
-const albert = Roboto({
+const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
   subsets: ["latin"],
+});
+
+const robotoLight = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+  variable: "--font-roboto-light",
 });
 
 export const metadata: Metadata = {
@@ -19,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${albert.className} relative`}>{children}</body>
+      <body className={`${roboto.className} relative theme-dark`}>
+        {children}
+      </body>
     </html>
   );
 }

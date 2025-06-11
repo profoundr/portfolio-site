@@ -7,6 +7,9 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      satoshi: ["Satoshi-Light"],
+    },
     fontSize: {
       large: "2.75rem",
       small: "1.75rem",
@@ -25,9 +28,18 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(10px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        aurora: {
+          from: {
+            backgroundPosition: "50% 50%, 50% 50%",
+          },
+          to: {
+            backgroundPosition: "350% 50%, 350% 50%",
+          },
+        },
       },
       animation: {
         fadeIn: "fadeIn 0.5s ease-out forwards",
+        aurora: "aurora 60s linear infinite",
       },
     },
     // colors: {

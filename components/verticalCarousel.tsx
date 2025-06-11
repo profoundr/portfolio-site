@@ -145,14 +145,19 @@ export function VerticalCarousel({
    */
   const getSlideStyle = (slideIndex: number) => {
     const offsetFromCenter = slideIndex - effectiveOffsetRadius;
-    const distanceFactor =
-      1 - Math.abs(offsetFromCenter / (effectiveOffsetRadius + 1));
+    // const distanceFactor =
+    //   1 - Math.abs(offsetFromCenter / (effectiveOffsetRadius + 1));
 
-    // Calculate diagonal position (both x and y translation)
-    const translateY = -50 + offsetFromCenter * 35; // Vertical separation
-    const translateX = offsetFromCenter * 25; // Horizontal separation
-    const scale = Math.max(0, distanceFactor);
-    const opacity = Math.max(0, distanceFactor ** 2);
+    const translateY = -50 + offsetFromCenter * 115; // Vertical separation
+    const translateX = Math.abs(offsetFromCenter) * 15; // Horizontal separation
+    const scale = Math.max(0, 1);
+    // const opacity = Math.max(0, distanceFactor ** 2);
+    const opacity =
+      offsetFromCenter === 0
+        ? 1
+        : offsetFromCenter === 1 || offsetFromCenter === -1
+        ? 0.3
+        : 0;
     const zIndex = 100 - Math.abs(offsetFromCenter);
 
     return {
@@ -294,7 +299,7 @@ export function VerticalCarousel({
       {/* Vertical Carousel */}
       <div
         ref={containerRef}
-        className="flex flex-col justify-end items-center h-full w-full"
+        className="flex flex-col justify-end items-center h-[60%] w-fit col-span-7"
         style={{
           position: "relative",
           width: "100%",
@@ -311,7 +316,7 @@ export function VerticalCarousel({
                 position: "absolute",
                 width: "clamp(400px, 60vw, 800px)",
                 height: "clamp(300px, 45vh, 600px)",
-                transformOrigin: "50% 50%",
+                transformOrigin: "80% 50%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -366,7 +371,7 @@ export function VerticalCarousel({
 
         <button
           onClick={() => moveSlide(1)}
-          className="absolute right-8 top-1/2 -translate-y-1/2 z-20 bg-white dark:bg-neutral-800 border-none rounded-full w-14 h-14 cursor-pointer shadow-lg text-3xl flex items-center justify-center hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+          className="absolute opacity-0 right-8 top-1/2 -translate-y-1/2 z-20 bg-white dark:bg-neutral-800 border-none rounded-full w-14 h-14 cursor-pointer shadow-lg text-3xl flex items-center justify-center hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
           aria-label="Next Slide"
         >
           <span style={{ lineHeight: 1 }}>↓</span>
@@ -374,7 +379,7 @@ export function VerticalCarousel({
 
         <button
           onClick={() => moveSlide(-1)}
-          className="absolute right-8 top-[calc(50%-100px)] -translate-y-1/2 z-20 bg-white dark:bg-neutral-800 border-none rounded-full w-14 h-14 cursor-pointer shadow-lg text-3xl flex items-center justify-center hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+          className="absolute opacity-0 right-8 top-[calc(50%-100px)] -translate-y-1/2 z-20 bg-white dark:bg-neutral-800 border-none rounded-full w-14 h-14 cursor-pointer shadow-lg text-3xl flex items-center justify-center hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
           aria-label="Previous Slide"
         >
           <span style={{ lineHeight: 1 }}>↑</span>
