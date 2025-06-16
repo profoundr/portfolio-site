@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Inter_Tight, Roboto } from "next/font/google";
 import "./globals.css";
+import Header from "../components/Header";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -11,6 +12,13 @@ const robotoLight = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
   subsets: ["latin"],
   variable: "--font-roboto-light",
+});
+
+const interTightRegular = Inter_Tight({
+  subsets: ["latin"],
+  variable: "--font-inter-tight",
+  display: "swap",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -25,7 +33,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} relative theme-dark`}>
+      <body
+        className={`${roboto.className} ${interTightRegular.variable} relative theme-dark antialiased`}
+      >
+        <Header />
         {children}
       </body>
     </html>

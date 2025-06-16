@@ -9,6 +9,8 @@ const config: Config = {
   theme: {
     fontFamily: {
       satoshi: ["Satoshi-Light"],
+      roboto: ["var(--font-roboto-light)"],
+      interTight: ["var(--font-inter-tight)"],
     },
     fontSize: {
       large: "2.75rem",
@@ -30,10 +32,10 @@ const config: Config = {
         },
         aurora: {
           from: {
-            backgroundPosition: "50% 50%, 50% 50%",
+            backgroundPosition: "50% 0%, 50% 0%",
           },
           to: {
-            backgroundPosition: "350% 50%, 350% 50%",
+            backgroundPosition: "350% 0%, 350% 0%",
           },
         },
       },
