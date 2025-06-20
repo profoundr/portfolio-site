@@ -17,7 +17,7 @@ export const AuroraBackground = ({
     <main>
       <div
         className={cn(
-          "transition-bg relative flex h-[100vh] flex-col items-center justify-center bg-zinc-50 text-slate-950 dark:bg-zinc-900",
+          "transition-bg relative flex flex-col items-center justify-start bg-zinc-50 text-slate-950 dark:bg-zinc-900",
           className
         )}
         {...props}
@@ -62,14 +62,14 @@ export const AuroraBackground = ({
           <div
             className={cn(
               // Restore the animated aurora and gradients for movement
-              `after:animate-aurora pointer-events-none absolute -inset-[10px] [background-image:var(--white-gradient),var(--aurora)] [background-size:300%,_200%] [background-position:50%_50%,50%_50%] opacity-60 blur-[10px] invert filter will-change-transform [--aurora:repeating-linear-gradient(100deg,var(--teal)_10%,var(--cyan)_18%,var(--blue)_28%,var(--purple)_40%,var(--magenta)_55%,var(--yellowgreen)_70%)] [--dark-gradient:repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)] [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)] after:absolute after:inset-0 after:[background-image:var(--dark-gradient),var(--aurora)] after:[background-size:200%,_100%] after:[background-attachment:fixed] after:mix-blend-difference after:content-[\"\"] dark:[background-image:var(--dark-gradient),var(--aurora)] dark:invert-0 after:dark:[background-image:var(--dark-gradient),var(--aurora)]`,
+              `after:animate-aurora pointer-events-none absolute -inset-[10px] [background-image:var(--white-gradient),var(--aurora)] [background-size:100%,_50%] [background-position:10%_10%,10%_10%] opacity-60 blur-[10px] invert filter will-change-transform [--aurora:repeating-linear-gradient(100deg,var(--teal)_10%,var(--cyan)_18%,var(--blue)_28%,var(--purple)_40%,var(--magenta)_55%,var(--yellowgreen)_70%)] [--dark-gradient:repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)] [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)] after:absolute after:inset-0 after:[background-image:var(--dark-gradient),var(--aurora)] after:[background-size:200%,_100%] after:[background-attachment:fixed] after:mix-blend-difference after:content-[\"\"] dark:[background-image:var(--dark-gradient),var(--aurora)] dark:invert-0 after:dark:[background-image:var(--dark-gradient),var(--aurora)]`,
               showRadialGradient &&
-                `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
+                `[mask-image:radial-gradient(ellipse_at_10%_0%,black_10%,var(--transparent)_70%)]`
             )}
           ></div>
         </div>
         <div
-          className="pointer-events-none absolute left-0 top-[90vh] w-full bg-[#0f1118]"
+          className="pointer-events-none absolute left-0 top-[140vh] w-full bg-[#0f1118] hidden"
           style={{
             height: "10vh", // Adjust as needed for a longer/shorter fade
             background: "linear-gradient(to bottom, transparent, #0f1118 100%)",

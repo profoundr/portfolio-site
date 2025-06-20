@@ -12,11 +12,12 @@ const config: Config = {
       roboto: ["var(--font-roboto-light)"],
       interTight: ["var(--font-inter-tight)"],
     },
-    fontSize: {
-      large: "2.75rem",
-      small: "1.75rem",
-    },
+
     extend: {
+      fontSize: {
+        large: "2.75rem",
+        small: "1.75rem",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -42,6 +43,15 @@ const config: Config = {
       animation: {
         fadeIn: "fadeIn 0.5s ease-out forwards",
         aurora: "aurora 60s linear infinite",
+      },
+      colors: {
+        border: "#1a322e14",
+        borderSecondary: "rgba(10,10,10,0.2)",
+        fontPrimary: "#1a322e",
+        background: "#dfedeb",
+        backgroundSecondary: "#f1f1f1",
+        fontSecondary: "#ffffff",
+        fontTertiary: "#3c3630",
       },
     },
     // colors: {

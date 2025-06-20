@@ -12,6 +12,10 @@ import { BackgroundBeams } from "@/components/ui/backgrounds/fade-lines";
 import { AuroraBackground } from "@/components/ui/backgrounds/aurora";
 import { SlidesData } from "@/data/portfolio-data";
 import FirstColumn from "../components/FirstColumn";
+import { FeatureHighlights } from "@/components/ui/FeatureHighlights";
+import { BadgeCheck, Eye, Gauge } from "lucide-react";
+import Benefits from "@/components/Benefits";
+import BenefitsNew from "@/components/benefits-new";
 
 // Define the structure of SlidesData items for clarity in mapping
 
@@ -180,7 +184,12 @@ export default function TestCarouselPage() {
               Debug now
             </button>
           </motion.div> */}
-          <FirstColumn />
+          <div className="w-full h-screen flex flex-col items-center justify-end">
+            <FirstColumn />
+            <FeatureHighlights />
+            {/* <Benefits /> */}
+            {/* <BenefitsNew /> */}
+          </div>
 
           {/* <VerticalCarousel
           slides={slides}
@@ -188,8 +197,8 @@ export default function TestCarouselPage() {
           showNavigation={true}
         /> */}
         </AuroraBackground>{" "}
+        <div className="h-full w-full  bg-gradient-to-b from-[#0f1118] to-[#1f2128]"></div>
       </div>
-      <div className="h-full w-full" />
 
       {/* Fade-out overlay at the bottom */}
     </div>

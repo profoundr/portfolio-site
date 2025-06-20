@@ -219,7 +219,7 @@ export function VerticalCarousel({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 z-10"
+            className="fixed inset-0 bg-black/60 z-[3000]"
           />
         )}
       </AnimatePresence>
@@ -227,7 +227,7 @@ export function VerticalCarousel({
       {/* Expanded card */}
       <AnimatePresence>
         {active && (
-          <div className="fixed inset-0 grid place-items-center z-[100] p-4">
+          <div className="fixed inset-0 grid place-items-center z-[3000] p-4">
             {/* Close button - top left */}
             <motion.button
               layout
@@ -299,7 +299,7 @@ export function VerticalCarousel({
       {/* Vertical Carousel */}
       <div
         ref={containerRef}
-        className="flex flex-col justify-end items-center h-[60%] w-fit col-span-7"
+        className="flex flex-col justify-end items-center w-fit"
         style={{
           position: "relative",
           width: "100%",

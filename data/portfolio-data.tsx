@@ -10,6 +10,13 @@ interface DummySlideItem {
   };
 }
 
+interface CardStackItem {
+  id: number;
+  name: string;
+  designation: string;
+  image: string;
+}
+
 export const SlidesData: DummySlideItem[] = [
   {
     id: 1,
@@ -75,5 +82,43 @@ export const SlidesData: DummySlideItem[] = [
       mainText:
         "Step into the Enchanted Forest, where sunlight filters through ancient canopies, and whispers of old magic linger in the air. A realm of mystery and wonder, waiting to be explored.",
     },
+  },
+];
+
+export const CardStackData: CardStackItem[] = [
+  {
+    id: 1,
+    name: "Azure Peaks",
+    designation: "Mountain Serenity",
+    image:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 2,
+    name: "Silent Valley",
+    designation: "Tranquil Waters",
+    image:
+      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 3,
+    name: "Coastal Dreams",
+    designation: "Ocean's Embrace",
+    image:
+      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 4,
+    name: "Urban Canvas",
+    designation: "City's Pulse",
+    image:
+      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 5,
+    name: "Enchanted Forest",
+    designation: "Mystic Woods",
+    image:
+      "https://images.unsplash.com/photo-1519985176271-adb1088fa94c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];

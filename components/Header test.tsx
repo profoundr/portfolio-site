@@ -2,22 +2,22 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-export default function Header() {
+export default function HeaderTest() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="relative w-full px-5 lg:px-20 py-6 lg:pt-10 pb-5 flex items-center justify-between z-[1000] lg:mb-[-130px]">
+    <header className="fixed inset-x-0 w-full px-16 pt-6 pb-16 flex items-center justify-between z-[1000] lg:mb-[-137px] max-w-screen-2xl mx-auto text-[#1a322e]">
       <Link
         href="/"
-        className="text-white text-[24px] lg:text-[30px] font-thin tracking-normal logo"
+        className=" text-[24px] font-semibold tracking-normal logo"
       >
-        .KEDAR S
+        edar
       </Link>
 
       {/* Hamburger Menu Button */}
       <button
         onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className="lg:hidden text-white p-2"
+        className="lg:hidden  p-2"
         aria-label="Toggle menu"
       >
         <div className="w-6 h-5 flex flex-col justify-between">
@@ -37,26 +37,26 @@ export default function Header() {
       <nav className="hidden lg:flex items-center gap-12">
         <Link
           href="#"
-          className="text-white text-base font-light transition hover:text-gray-300"
+          className=" text-[18px] font-medium transition hover:text-gray-300"
         >
           About
         </Link>
         <Link
           href="#"
-          className="text-white text-base font-light transition hover:text-gray-300"
+          className=" text-[18px] font-medium transition hover:text-gray-300"
         >
           Achievements
         </Link>
         <Link
           href="#"
-          className="text-white text-base font-light transition hover:text-gray-300"
+          className=" text-[18px] font-medium transition hover:text-gray-300"
         >
           Work
         </Link>
 
         {/* <Link
           href="#"
-          className="ml-4 flex items-center gap-2 text-white font-medium"
+          className="ml-4 flex items-center gap-2  font-medium"
         >
           Collaborate
           <span className="inline-block transform translate-x-0.5">
@@ -86,21 +86,21 @@ export default function Header() {
         <nav className="flex flex-col justify-start items-start h-full gap-8 p-10">
           <Link
             href="#"
-            className="text-white text-xl font-light transition hover:text-gray-300"
+            className=" text-xl font-normal transition hover:text-gray-300"
             onClick={() => setIsMenuOpen(false)}
           >
             Work
           </Link>
           <Link
             href="#"
-            className="text-white text-xl font-light transition hover:text-gray-300"
+            className=" text-xl font-normal transition hover:text-gray-300"
             onClick={() => setIsMenuOpen(false)}
           >
             About
           </Link>
           <Link
             href="#"
-            className="text-white text-xl font-light transition hover:text-gray-300"
+            className=" text-xl font-normal transition hover:text-gray-300"
             onClick={() => setIsMenuOpen(false)}
           >
             Achievements

@@ -7,7 +7,7 @@ const ASCIIText = dynamic(() => import("@/components/ui/elements/ascii-text"), {
 
 export default function FirstColumn() {
   return (
-    <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end w-full mt-auto px-5 py-6 lg:p-20 font-interTight z-[200]">
+    <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end w-full px-5 py-6 lg:p-20 z-[200]">
       <div className="flex flex-col w-full max-w-[500px] lg:max-w-none lg:w-[52%]  mt-auto text-white relative">
         {/* <div className="absolute top-0 left-0 w-full h-full">
         <ASCIIText
