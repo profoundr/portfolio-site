@@ -3,6 +3,7 @@ import { Inter_Tight, Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 import HeaderTest from "@/components/Header test";
+import HeaderSlate from "@/components/HeaderSlate";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -38,7 +39,8 @@ export default function RootLayout({
         className={`${roboto.className} ${interTightRegular.variable} relative theme-dark antialiased font-interTight text-white`}
       >
         {/* <Header /> */}
-        <HeaderTest />
+        {/* <HeaderTest /> */}
+        <HeaderSlate />
         {children}
       </body>
     </html>
