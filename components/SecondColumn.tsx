@@ -2,17 +2,17 @@
 import useEmblaCarousel from "embla-carousel-react";
 import { useKeenSlider } from "keen-slider/react.es";
 import "keen-slider/keen-slider.min.css";
-import EmblaCarousel from "./Embla/EmblaCarousel";
 import { EmblaOptionsType } from "embla-carousel";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination } from "swiper/modules";
-import { ExpandableCardDemo } from "./Embla/ExpandableCard";
-import ArrowIcon from "../SVGs/arrow";
 import { useRef, useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { wrap } from "module";
 import { AnimatePresence, motion } from "framer-motion";
+import { ExpandableCardDemo } from "./ui/elements/Embla/ExpandableCard";
+import { ArrowUpIcon } from "lucide-react";
+import { ArrowIcon } from "./SVGs/arrow";
 
 export function SecondColumn() {
   const [emblaRef] = useEmblaCarousel();
@@ -98,7 +98,7 @@ function NormalFlex() {
       </div>
       <div className="flex mt-5 gap-5">
         <button onClick={() => scroll("left")}>
-          <ArrowIcon className="rotate-180" />
+          <ArrowUpIcon className="rotate-180" />
         </button>
         <button onClick={() => scroll("right")}>
           <ArrowIcon />
