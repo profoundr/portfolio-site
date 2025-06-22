@@ -144,3 +144,9 @@ body {
   background-size: 0.25rem 0.25rem;
   background-color: #ffffff;
 }
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-track-color: transparent;
+}

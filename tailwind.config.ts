@@ -45,13 +45,16 @@ const config: Config = {
         aurora: "aurora 60s linear infinite",
       },
       colors: {
-        border: "#1a322e14",
+        border: "#282d2c32",
         borderSecondary: "rgba(10,10,10,0.2)",
         fontPrimary: "#1a322e",
         background: "#dfedeb",
         backgroundSecondary: "#f1f1f1",
         fontSecondary: "#ffffff",
         fontTertiary: "#3c3630",
+        slateBg: "#ffffff",
+        slateText: "#000000",
+        slateGray: "#2f2f2f",
       },
     },
     // colors: {

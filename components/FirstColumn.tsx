@@ -27,63 +27,7 @@ export default function FirstColumn() {
           My name is Kedar, I am a web developer who makes web apps leveraging
           AI.
         </span>
-        <div className="relative mt-4">
-          {/* <span className="absolute bg-transparent  top-[-8px] left-4 text-[12px] px-1">
-          Techstack
-        </span>
-        <div className="border-[1.5px] border-white rounded-lg grid grid-cols-5 p-4 justify-items-center items-end">
-          <div className="w-fit flex flex-col items-center justify-between">
-            <Image
-              src="/SVGs/nextjs.svg"
-              width={60}
-              height={50}
-              alt="Next.js"
-              className="mb-2"
-            />
-            <span className="text-[12px] mx-auto">Next.JS</span>
-          </div>
-          <div className="w-fit flex flex-col items-center justify-between">
-            <Image
-              src="/SVGs/Remix.svg"
-              width={50}
-              height={50}
-              alt="Next.js"
-              className="mb-2"
-            />
-            <span className="text-[12px] mx-auto">Remix</span>
-          </div>
-          <div className="w-fit flex flex-col items-center gap-2">
-            <Image
-              src="/SVGs/TailwindCSS.svg"
-              width={70}
-              height={40}
-              alt="Next.js"
-              className="mb-2"
-            />
-            <span className="text-[12px] mx-auto">Tailwind CSS</span>
-          </div>{" "}
-          <div className="w-fit flex flex-col items-center justify-between">
-            <Image
-              src="/SVGs/shopify.svg"
-              width={50}
-              height={50}
-              alt="Next.js"
-              className="mb-2"
-            />
-            <span className="text-[12px] mx-auto">Shopify</span>
-          </div>{" "}
-          <div className="w-fit flex flex-col items-center justify-between">
-            <Image
-              src="/SVGs/DirectusCMS.svg"
-              width={70}
-              height={50}
-              alt="Next.js"
-              className="mb-2"
-            />
-            <span className="text-[12px] mx-auto">Directus CMS</span>
-          </div>
-        </div> */}
-        </div>
+        <div className="relative mt-4"></div>
         {/* <div className="relative mt-4">
         <span className="absolute  top-[-8px] left-4 text-[12px] px-1">
           AI Techstack
