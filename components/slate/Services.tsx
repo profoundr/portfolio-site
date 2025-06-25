@@ -1,58 +1,103 @@
+"use client";
 import React from "react";
+import { useInView } from "react-intersection-observer";
 
 const services = [
   {
     number: "1",
-    title: "Strategy",
+    title: "Web Development",
     description:
-      "Every project starts with understanding what matters. I'll dig into what you're trying to achieve, who it's for, and what success looks like. The goal is to make sure we're solving the right problems from the start.",
+      "Dynamic, interactive web experiences built with modern technologies—scalable, maintainable, and designed to go far beyond standard templates.",
   },
   {
     number: "2",
-    title: "Design",
+    title: "E-Commerce Development",
     description:
-      "This is where things start to take shape. I'll explore a couple of different directions and share the strongest options with you. You'll be involved throughout, so the end result feels right and works well.",
+      "Custom e-commerce solutions that drive sales, including bespoke Shopify storefronts and seamless integration with third-party APIs for inventory, shipping, and marketing automation.",
   },
   {
     number: "3",
-    title: "Development",
+    title: "SaaS Development",
     description:
-      "Once the design feels right, I'll build the site in Webflow. It'll be clean, fast, and responsive. I use Client First and Relume to keep everything consistent and speed up the process without sacrificing quality.",
+      "Helping startups turn ideas into functional products by building a solid, maintainable foundation for SaaS applications and implementing the core features needed for launch.",
   },
 ];
 
 export default function Services() {
+  // Intersection observer for the main section
+  const [sectionRef, sectionInView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  // Intersection observer for individual service cards
+  const [cardsRef, cardsInView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
   return (
-    <div className="w-full bg-slateBg px-5 py-10 lg:py-24">
-      <div className="max-w-screen-2xl w-full mx-auto">
+    <div
+      ref={sectionRef}
+      className={`w-full bg-slateBg px-5 py-10 lg:py-24 transition-opacity duration-300 z-[200] relative ${
+        sectionInView ? "opacity-100" : "opacity-0"
+      }`}
+      id="services"
+    >
+      <div className="max-w-screen-2xl w-full mx-auto z-[200]">
         {/* Header Section */}
         <div className="flex justify-between items-end">
           <div className="flex flex-col w-full gap-8">
-            <h2 className="text-[70px] lg:text-[98px] font-medium leading-none tracking-tight text-slateText relative z-10">
+            <h2
+              className={`text-[70px] lg:text-[98px] font-medium leading-none tracking-tight text-slateText relative z-10 transition-all duration-300 delay-200 ${
+                sectionInView
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
               Services
             </h2>
-            <p className="text-base lg:text-xl font-medium mb-5 font-interTight leading-[20px] lg:leading-[28px] tracking-tight  max-w-[750px] text-slateText opacity-65">
-              I provide three focused design services to keep things simple and
-              effective. No headaches, just great design.
+            <p
+              className={`text-base lg:text-xl font-medium font-interTight !leading-relaxed tracking-wide mb-5 max-w-[750px] text-slateText transition-all duration-300 delay-300 ${
+                sectionInView
+                  ? "opacity-65 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
+              Building great software is a partnership. I work closely with
+              founders and teams to deliver custom web solutions that are
+              engineered to perform, scale, and last.
             </p>
           </div>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div
+          ref={cardsRef}
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 transition-all duration-300 delay-500 ${
+            cardsInView
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
+          }`}
+        >
           {/* Website Service */}
-
           {services.map((service, idx) => (
             <div
               key={idx}
-              className="flex flex-col w-full border border-border rounded-lg hover:shadow-lg transition-all duration-300 group"
+              className={`flex flex-col w-full border border-border rounded-lg hover:shadow-lg transition-all duration-300 group ${
+                cardsInView ? "animate-fadeInBlur" : "opacity-0"
+              }`}
+              style={{
+                animationDelay: `${(idx + 1) * 200}ms`,
+                animationFillMode: "forwards",
+              }}
             >
               <div className="flex justify-between items-center p-[30px] rounded-t-lg relative z-10">
                 <div className="flex gap-[10px] items-center">
                   <div className="text-[26px] font-normal text-slateGray opacity-60 cursor-default">
                     {service.number}
                   </div>
-                  <div className="text-[30px] lg:text-[46px] font-medium text-slateText">
+                  <div className="lg:text-[30px] leading-none font-medium text-slateText">
                     {service.title}
                   </div>
                 </div>

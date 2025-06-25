@@ -30,7 +30,7 @@ export default function Work() {
   useOutsideClick(ref, () => setActive(null));
 
   return (
-    <div className="relative bg-slateBg">
+    <div className="relative bg-slateBg pb-14 lg:pb-24">
       <div className="w-full bg-slateBg max-w-screen-2xl mx-auto text-slateText">
         {/* Overlay background */}
         <AnimatePresence>
@@ -47,7 +47,7 @@ export default function Work() {
         {/* Expanded dialog */}
         <AnimatePresence>
           {active && (
-            <div className="fixed inset-0 z-[100]">
+            <div className="fixed inset-0 z-[1000]">
               {/* Close button */}
               <motion.button
                 key={`button-${active.id}-${id}`}
@@ -75,12 +75,12 @@ export default function Work() {
                     >
                       <motion.div
                         layoutId={`category-${active.id}-${id}`}
-                        className="h-fit flex-col items-start py-5 border-b border-border px-5 lg:px-12 gap-1 hidden lg:flex"
+                        className="h-fit items-center py-5 border-b border-slateText px-5 lg:px-12 hidden lg:flex gap-6"
                       >
-                        <span className="text-base font-semibold tracking-[0px]  scale-x-105 h-[20px]">
+                        <span className="text-base font-semibold tracking-[0px] scale-x-105">
                           {active.category}
                         </span>
-                        <div className="flex flex-row gap-4 h-[12px]">
+                        <div className="flex flex-row gap-4">
                           <span className="text-[12px] font-medium tracking-tight opacity-60 scale-x-[1.15]">
                             {active.type}
                           </span>
@@ -97,7 +97,7 @@ export default function Work() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="grid grid-cols-2 justify-items-start lg:mt-20 px-5 lg:px-12 py-3 border-b border-border"
+                        className="grid grid-cols-2 justify-items-start lg:mt-20 px-5 lg:px-12 py-3 border-b border-slateText"
                       >
                         <span className="text-base font-semibold tracking-[0px]  scale-x-105">
                           Client
@@ -106,31 +106,33 @@ export default function Work() {
                           {active.client}
                         </span>
                       </motion.div>
-                      <motion.div
-                        layout
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="grid grid-cols-2 items-center justify-items-start px-5 lg:px-12 py-3 border-b border-opacity-60 border-border"
-                      >
-                        <span className="text-base font-semibold tracking-[0px]  scale-x-105">
-                          {" "}
-                          Preview Link
-                        </span>
-                        <a
-                          href={active.clientHref}
-                          target="_blank"
-                          className=" text-[12px] font-medium tracking-tight scale-x-[1.15] uppercase underline"
+                      {active.previewLink && active.clientHref && (
+                        <motion.div
+                          layout
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="grid grid-cols-2 items-center justify-items-start px-5 lg:px-12 py-3 border-b border-opacity-60 border-slateText"
                         >
-                          {active.previewLink}
-                        </a>
-                      </motion.div>
+                          <span className="text-base font-semibold tracking-[0px]  scale-x-105">
+                            {" "}
+                            Preview Link
+                          </span>
+                          <a
+                            href={active.clientHref}
+                            target="_blank"
+                            className=" text-[12px] font-medium tracking-tight scale-x-[1.15] uppercase underline"
+                          >
+                            {active.previewLink}
+                          </a>
+                        </motion.div>
+                      )}
                       <motion.div
                         layout
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="grid grid-cols-2 justify-items-start px-5 lg:px-12 py-3 border-b border-border"
+                        className="grid grid-cols-2 justify-items-start px-5 lg:px-12 py-3 border-b border-slateText"
                       >
                         <span className="text-base font-semibold tracking-[0px]  scale-x-105">
                           Technologies
@@ -147,20 +149,19 @@ export default function Work() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
-                          className="grid grid-cols-2 justify-items-start px-5 lg:px-12 py-5 border-b border-border"
+                          className="grid grid-cols-2 justify-items-start px-5 lg:px-12 py-5 border-b border-slateText"
                         >
                           <span className="text-base font-semibold tracking-[0px]  scale-x-105">
                             {" "}
                             Details
                           </span>
-                          <span className=" text-[12px] font-medium tracking-tight opacity-60 scale-x-[1.15]">
-                            {" "}
+                          <ul className="text-[12px] font-medium tracking-tight opacity-60 scale-x-[1.15] list-disc pl-4">
                             {active.details.map((detail) => (
-                              <span key={detail}>
-                                • {detail} <br />
-                              </span>
+                              <li key={detail} className="mb-1">
+                                {detail}
+                              </li>
                             ))}
-                          </span>
+                          </ul>
                         </motion.div>
                       )}
 
@@ -198,11 +199,11 @@ export default function Work() {
                       className="h-full"
                     >
                       <Image
-                        priority
-                        width={1200}
-                        height={1200}
+                        width={4000}
+                        height={4000}
                         src={active.image}
-                        alt={active.title}
+                        alt={active.category}
+                        // className="w-full h-full object-cover scale-105"
                         className="w-full h-full object-cover"
                       />
                     </motion.div>
@@ -214,19 +215,22 @@ export default function Work() {
         </AnimatePresence>
 
         {/* Grid of work items */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[60px_30px] px-5">
+        <div
+          id="work"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px_15px] px-5"
+        >
           {workItems.map((item) => (
             <motion.div
               key={item.id}
               layoutId={`card-${item.id}-${id}`}
               onClick={() => setActive(item)}
-              className={`flex flex-col gap-3 cursor-pointer ${
+              className={`flex flex-col gap-3 cursor-pointer overflow-clip ${
                 item.span === 2 ? "lg:col-span-2" : "lg:col-span-1"
               }`}
             >
               <motion.h2
                 layoutId={`title-${item.id}-${id}`}
-                className="text-4xl font-medium flex flex-row items-center justify-start gap-6"
+                className="text-4xl font-medium flex flex-row items-center justify-start gap-6 ml-1"
               >
                 <span className="text-base font-semibold tracking-[0px] text-slateGray scale-x-105">
                   {item.category}
@@ -241,13 +245,17 @@ export default function Work() {
                   {item.number}
                 </span>
               </motion.h2>
-              <motion.div layoutId={`image-${item.id}-${id}`}>
+              <motion.div
+                className="overflow-clip"
+                layoutId={`image-${item.id}-${id}`}
+              >
                 <Image
                   src={item.image}
-                  alt={item.title}
+                  alt={item.category}
                   width={2000}
                   height={2000}
-                  className="w-full h-auto"
+                  className="w-full h-auto hover:scale-105 transition-all duration-300"
+                  // className="w-full h-auto"
                 />
               </motion.div>
             </motion.div>
@@ -285,182 +293,159 @@ const CloseIcon = () => {
 const workItems = [
   {
     id: 1,
-    title: "Aesthetic Posters Collection",
-    category: "Aesthetic",
-    type: "POSTERS",
-    number: "08",
+    category: "Neat Method",
+    type: "E COMMERCE",
+    number: "01",
     span: 2,
-    image:
-      "https://storage.googleapis.com/studio-design-asset-files/projects/p6aow1GEaR/s-1800x1800_v-frms_webp_7af8a4f1-106e-45b7-9501-0210a260909d_middle.webp",
+    image: "/portfolio-images/image_1.png",
     description:
-      "A comprehensive collection of minimalist aesthetic posters that explore the intersection of typography, color theory, and visual hierarchy. Each piece is carefully crafted to evoke specific emotions and create memorable visual experiences.",
+      "Neat Method is a luxury home organizing brand with 50+ franchise locations across the U.S. and over $6M in annual revenue. Contributed to their Shopify Hydrogen storefront with clean, maintainable code and pixel-perfect implementation of high-fidelity designs.",
     details: [
-      "Designed 12 unique poster variations",
-      "Explored 6 different color palettes",
-      "Created custom typography treatments",
-      "Developed brand guidelines for consistency",
+      "Migrated storefront from Liquid to Hydrogen (Remix)",
+      "Developed advanced product filtering system",
+      "Maintained and optimized storefront performance",
+      "Built custom sales pages and dynamic landing pages",
+      "Integrated seamlessly with Shopify backend",
     ],
-    technologies: [
-      "Adobe Illustrator",
-      "Photoshop",
-      "Typography",
-      "Color Theory",
-      "Grid Systems",
-    ],
-    backgroundColor: "bg-slateBg",
+    technologies: ["Shopfiy Hydrogen", "Remix", "Tailwind CSS"],
+    backgroundColor: "bg-[#EBE8E2]",
     textColor: "text-slateText",
-    previewLink: "togetherwomenshealth.com",
-    clientHref: "https://togeth.com",
-    client: "TWH",
+    previewLink: "neatmethod.com",
+    clientHref: "https://neatmethod.com",
+    client: "Freelance",
   },
   {
     id: 2,
-    title: "Digital Art Series",
-    category: "Digital",
-    type: "ART",
-    number: "12",
+    category: "Dbreif",
+    type: "SAAS",
+    number: "02",
     span: 1,
-    image:
-      "https://storage.googleapis.com/studio-design-asset-files/projects/p6aow1GEaR/s-1800x1800_v-frms_webp_7af8a4f1-106e-45b7-9501-0210a260909d_middle.webp",
+    image: "/portfolio-images/image_3.png",
     description:
-      "A series of digital artworks that push the boundaries of contemporary design. Each piece combines traditional artistic principles with modern digital techniques to create compelling visual narratives.",
+      "Dbrief is an app built by journalists for journalists to streamline interviews with subject matter experts (SMEs). It allows sending interactive, AI-powered interviews, tracking progress in real time, and communicating with SMEs to request edits or clarifications — all in one seamless workflow.",
     details: [
-      "Created 8 original digital artworks",
-      "Experimented with various digital painting techniques",
-      "Developed custom brush sets",
-      "Established consistent visual language",
+      "Developed full-stack architecture including frontend, backend, and Supabase integration",
+      "Implemented AI-powered content correction and follow-up question generation system",
+      "Handled secure, server-side processing without public APIs",
+      "Ensured clean UX for both interviewers and contributors",
     ],
-    technologies: [
-      "Procreate",
-      "Adobe Photoshop",
-      "Digital Painting",
-      "Composition",
-      "Color Grading",
-    ],
-    backgroundColor: "bg-blue-50",
-    textColor: "text-blue-900",
-    previewLink: "togeth.com",
-    clientHref: "https://togeth.com",
-    client: "TWH",
+    technologies: ["Next.js", "Supabase", "OpenAI API", "Tailwind CSS"],
+    backgroundColor: "bg-[#CAE2D5]",
+    textColor: "text-slateText",
+    previewLink: "dbreif.com",
+    clientHref: "https://dbreif.com",
+    client: "Freelance",
   },
   {
     id: 3,
-    title: "Brand Identity Package",
-    category: "Brand",
-    type: "IDENTITY",
-    number: "05",
+    category: "Women's First Medical Spa",
+    type: "HEALTHCARE WEBSITE",
+    number: "03",
     span: 1,
-    image:
-      "https://storage.googleapis.com/studio-design-asset-files/projects/p6aow1GEaR/s-1800x1800_v-frms_webp_7af8a4f1-106e-45b7-9501-0210a260909d_middle.webp",
+    image: "/portfolio-images/image_4.png",
     description:
-      "Complete brand identity package including logo design, color palette, typography system, and brand guidelines. This project demonstrates the power of cohesive visual communication.",
+      "Women's First Medical Spa is a health and wellness clinic offering a range of cosmetic and medical services. Originally built on WordPress, the site was fully rebuilt using modern technologies for better performance, maintainability, and pixel-perfect design fidelity.",
     details: [
-      "Designed primary and secondary logos",
-      "Created comprehensive brand guidelines",
-      "Developed color palette and typography system",
-      "Produced brand application examples",
+      "Rebuilt entire website from WordPress to Next.js and Tailwind CSS",
+      "Used Directus CMS for content management",
+      "Converted the original design pixel-to-pixel for consistent visual fidelity",
+      "Improved performance, accessibility, and maintainability of the codebase",
+      "Structured reusable components for scalable frontend development",
+      "Ensured responsive, mobile-friendly layouts across all pages",
     ],
-    technologies: [
-      "Logo Design",
-      "Brand Strategy",
-      "Typography",
-      "Color Theory",
-      "Adobe Creative Suite",
-    ],
-    backgroundColor: "bg-green-50",
-    textColor: "text-green-900",
-    previewLink: "togeth.com",
-    clientHref: "https://togeth.com",
-    client: "TWH",
+    technologies: ["Next.js", "Tailwind CSS", "Directus CMS", "Shadcn UI"],
+    backgroundColor: "bg-[#E8D8D7]",
+    textColor: "text-[#7D3A3E]",
+    previewLink: "womensfirstmedicalspa.com",
+    clientHref: "https://womensfirstmedicalspa.com",
+    client: "Freelance",
   },
   {
     id: 4,
-    title: "Web Design Portfolio",
-    category: "Web",
-    type: "DESIGN",
-    number: "15",
+    category: "Together Women's Health",
+    type: "HEALTHCARE WEBSITE",
+    number: "04",
     span: 2,
-    image:
-      "https://storage.googleapis.com/studio-design-asset-files/projects/p6aow1GEaR/s-1800x1800_v-frms_webp_7af8a4f1-106e-45b7-9501-0210a260909d_middle.webp",
+    image: "/portfolio-images/image_2.png",
     description:
-      "Modern web design portfolio showcasing responsive design principles and user experience best practices. The design emphasizes clean aesthetics and intuitive navigation.",
+      "Together Women's Health (TWH) is a healthcare organization with 20+ women's health practices across the U.S., generating $10 – $20M in annual revenue. The original site was built with Plasmic and was fully rebuilt using Next.js for improved performance, scalability, and developer control.",
     details: [
-      "Designed responsive layouts for all devices",
-      "Created interactive prototypes",
-      "Optimized for accessibility standards",
-      "Implemented modern design patterns",
+      "Migrated the entire website from Plasmic to a custom-built Next.js application",
+      "Built dynamic, data-driven pages that fetch and render content from Directus",
+      "Integrated Directus as a headless CMS to manage all content and images",
+      "Improved site performance, SEO, and maintainability by removing page-builder dependencies",
+      "Structured scalable, reusable React components for long-term growth",
     ],
-    technologies: [
-      "Figma",
-      "Adobe XD",
-      "Responsive Design",
-      "UX/UI",
-      "Prototyping",
-    ],
-    backgroundColor: "bg-purple-50",
-    textColor: "text-purple-900",
-    previewLink: "togeth.com",
-    clientHref: "https://togeth.com",
-    client: "TWH",
+    technologies: ["Next.js", "Tailwind CSS", "Directus"],
+    backgroundColor: "bg-[#C9D4FB]",
+    textColor: "text-[#2E3550]",
+    previewLink: "togetherwomenshealth.com",
+    clientHref: "https://togetherwomenshealth.com",
+    client: "Freelance",
   },
   {
     id: 5,
-    title: "Photography Collection",
-    category: "Photo",
-    type: "GRAPHY",
-    number: "22",
+    category: "Together Women's Health Imaging Center",
+    type: "WEBSITE",
+    number: "05",
     span: 1,
-    image:
-      "https://storage.googleapis.com/studio-design-asset-files/projects/p6aow1GEaR/s-1800x1800_v-frms_webp_7af8a4f1-106e-45b7-9501-0210a260909d_middle.webp",
+    image: "/portfolio-images/image_5.png",
     description:
-      "Curated photography collection featuring architectural photography and urban landscapes. Each image captures the essence of modern city life through careful composition and lighting.",
+      "Together Women’s Health Imaging Center is a new franchise under the TWH organization, offering specialized imaging services for women’s health. The website was built using Plasmic, with dynamic content managed through Directus CMS for scalable, flexible content delivery.",
     details: [
-      "Shot 50+ architectural photographs",
-      "Edited and color graded all images",
-      "Created series of urban landscapes",
-      "Developed consistent editing style",
+      "Built the full website in Plasmic with responsive, brand-consistent design",
+      "Integrated Directus CMS to manage service-specific content and images",
+      "Implemented multi-domain support with dynamic theming and content loading, enabling scalable deployment from a single codebase and Plasmic project",
+      "Ensured pixel-perfect implementation aligned with brand standards",
     ],
-    technologies: [
-      "Photography",
-      "Lightroom",
-      "Composition",
-      "Color Grading",
-      "Architecture",
-    ],
-    backgroundColor: "bg-orange-50",
-    textColor: "text-orange-900",
-    previewLink: "togeth.com",
-    clientHref: "https://togeth.com",
-    client: "TWH",
+    technologies: ["Plasmic", "Directus", "Javascript", "CSS"],
+    backgroundColor: "bg-[#9CA0AD]",
+    textColor: "text-slateText",
+    previewLink: "togetherwomenshealthimagingcenter.com",
+    clientHref: "https://togetherwomenshealthimagingcenter.com",
+    client: "Freelance",
   },
   {
     id: 6,
-    title: "Illustration Series",
-    category: "Illustration",
-    type: "SERIES",
-    number: "18",
+    category: "TWH Map",
+    type: "CUSTOM MAP",
+    number: "06",
     span: 1,
-    image:
-      "https://storage.googleapis.com/studio-design-asset-files/projects/p6aow1GEaR/s-1800x1800_v-frms_webp_7af8a4f1-106e-45b7-9501-0210a260909d_middle.webp",
+    image: "/portfolio-images/image_7.png",
     description:
-      "Hand-drawn illustration series exploring themes of nature and human connection. Each illustration tells a unique story through detailed line work and thoughtful composition.",
+      "The Together Women’s Health Map is a custom React application embedded across multiple TWH websites to help users find the right clinic or doctor. It features advanced filtering by location, specialty, and distance, while dynamically adapting to each site’s branding and domain context. Built for reusability, it powers the location search experience across the entire TWH ecosystem.",
     details: [
-      "Created 10 hand-drawn illustrations",
-      "Developed consistent illustration style",
-      "Explored various drawing techniques",
-      "Established visual storytelling approach",
+      "Developed a reusable React map application embedded across multiple TWH sites",
+      "Implemented advanced filters for doctor type, state/city, and distance radius",
+      "Integrated Algolia search to enable fast, typo-tolerant search for doctors and locations",
+      "Integrated with dynamic location data from a centralized backend or CMS",
+      "Adapted theming and data based on each site’s domain and configuration",
     ],
-    technologies: [
-      "Hand Drawing",
-      "Illustration",
-      "Composition",
-      "Storytelling",
-      "Traditional Media",
+    technologies: ["Next.js", "Tailwind CSS", "Directus", "Algolia"],
+    backgroundColor: "bg-[#E1E1E1]",
+    textColor: "text-slateText",
+    previewLink: "togetherwomenshealth.com/locations",
+    clientHref: "https://togetherwomenshealth.com/locations/michigan",
+    client: "Freelance",
+  },
+  {
+    id: 7,
+    category: "Pluto Misfits",
+    type: "Dashboard",
+    number: "07",
+    span: 1,
+    image: "/portfolio-images/image_6.png",
+    description:
+      "The Pluto Misfits Campaign Dashboard was built to support a web3 marketing campaign where users completed social tasks (like following Pluto’s X profile) to earn points. These points could then be redeemed for Pluto NFTs. The dashboard enabled smooth onboarding, task tracking, and point accumulation, helping drive engagement and community growth.",
+    details: [
+      "Built the frontend UI for the dashboard using NextJS and Tailwind CSS",
+      "Implemented authentication flow for secure user access and session handling",
+      "Created interfaces for task completion tracking and point system visibility",
+      "Ensured responsive, user-friendly design for both desktop and mobile",
     ],
-    backgroundColor: "bg-pink-50",
-    textColor: "text-pink-900",
-    previewLink: "togeth.com",
-    clientHref: "https://togeth.com",
-    client: "TWH",
+    technologies: ["Next.js", "Tailwind CSS", "Next Auth", "Shadcn UI"],
+    backgroundColor: "bg-[#C3FFE8]",
+    textColor: "text-slateText",
+    client: "Pluto",
   },
 ];

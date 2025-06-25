@@ -1,11 +1,25 @@
 import React from "react";
+import { LinkedIn, Upwork, GitHub, Twitter } from "../SVGs/icons";
 
 function Footer() {
   return (
-    <div className=" bg-slateBg w-full py-10 border-t border-border px-5">
-      <div className="flex flex-col lg:flex-row item-center justify-between max-w-screen-2xl mx-auto gap-8">
-        <span className="text-slateText flex flex-row items-center gap-2 text-sm">
-          {" "}
+    <div className=" bg-slateBg w-full py-20 border-t border-border px-5">
+      <div className="flex flex-col lg:flex-row items-baseline justify-between max-w-screen-2xl mx-auto gap-8">
+        <div className="text-slateText flex flex-col items-start gap-8 text-sm">
+          <span className="text-slateText text-[40px] font-medium leading-[40px]]">
+            Let&apos;s Work Together
+          </span>
+          <a
+            href="mailto:kedar.sawant66@gmail.com?subject=Let's Work Together"
+            className="underline underline-offset-4 text-lg font-normal"
+          >
+            kedar.sawant66@gmail.com
+          </a>
+          <span className="text-slateText text-[11px] mt-5 hidden lg:block">
+            Copywrite © {new Date().getFullYear()} Kedar Sawant
+          </span>
+        </div>
+        <div className="flex-col gap-8 justify-center items-center hidden ">
           <svg
             width="32"
             height="32"
@@ -18,16 +32,26 @@ function Footer() {
               d="M31.205 20.0112C31.6522 19.6128 32 19.065 32 18.4176V2.08393C32 0.341007 29.9131 -0.654958 28.5715 0.490393L17.3416 9.7528C16.5466 10.4002 15.4534 10.4002 14.6584 9.7528L3.42855 0.490393C2.03725 -0.654958 0 0.341007 0 2.08393V18.4176C0 19.0152 0.248448 19.6128 0.745344 20.0112L14.6087 31.5145C15.4037 32.1618 16.4969 32.1618 17.2919 31.5145L31.205 20.0112Z"
               fill="currentColor"
             ></path>
-          </svg>{" "}
-          ◎2025
-        </span>
-        <span className="text-slateText text-sm">kedar.sawant66@gmail.com</span>
-
-        <div className="flex flex-row gap-4 text-slateText">
-          <a href="/">Home</a>
-          <a href="/">About</a>
-          <a href="/">Contact</a>
+          </svg>
         </div>
+
+        <div className="flex flex-row gap-8 text-slateText">
+          <a href="/">
+            <Upwork className="w-8 h-8" />
+          </a>
+          <a href="/">
+            <LinkedIn className="w-8 h-8" />
+          </a>
+          <a href="/">
+            <GitHub className="w-8 h-8" />
+          </a>
+          <a href="/">
+            <Twitter className="w-8 h-8" />
+          </a>
+        </div>
+        <span className="text-slateText text-[11px] mt-5 block lg:hidden">
+          Copywrite © {new Date().getFullYear()} Kedar Sawant
+        </span>
       </div>
     </div>
   );

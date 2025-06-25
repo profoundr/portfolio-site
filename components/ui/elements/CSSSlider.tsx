@@ -89,14 +89,14 @@ const DiagonalSlideshow = ({ slides }: { slides: any[] }) => {
         {/* Animate title changes by using a key or a more advanced text animation technique */}
         <h2
           key={currentSlideData.title} // Key change forces re-render, can trigger simple fade if CSS is set
-          className="text-2xl md:text-4xl font-bold mb-2 animate-fadeIn" // Example custom animation
+          className="text-2xl md:text-4xl font-bold mb-2 animate-fadeInBlur" // Example custom animation
         >
           {currentSlideData.title}
         </h2>
         {currentSlideData.description && (
           <p
             key={currentSlideData.description}
-            className="text-sm md:text-base animate-fadeIn animation-delay-200" // Example custom animation
+            className="text-sm md:text-base animate-fadeInBlur animation-delay-200" // Example custom animation
           >
             {currentSlideData.description}
           </p>

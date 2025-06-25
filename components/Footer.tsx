@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Footer = () => {
@@ -29,7 +30,7 @@ const Footer = () => {
               <div className="mt-10">
                 <div className="flex flex-row items-center justify-between w-full">
                   <a href="#" className="text-fontPrimary text-base relative">
-                    <img
+                    <Image
                       loading="lazy"
                       src="https://cdn.prod.website-files.com/67dc5e3767277eaa0559d172/67dd7d0fd2003c559bdcde4c_Navbar_logo.svg"
                       alt="Realm logo"
