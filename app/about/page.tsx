@@ -245,7 +245,7 @@ function Techstack() {
   );
 }
 
-export function Mission() {
+function Mission() {
   const [missionRef, missionInView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
