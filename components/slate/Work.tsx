@@ -316,7 +316,7 @@ const workItems = [
   },
   {
     id: 2,
-    category: "Dbreif",
+    category: "Dbrief",
     type: "SAAS",
     number: "02",
     span: 1,
@@ -332,8 +332,8 @@ const workItems = [
     technologies: ["Next.js", "Supabase", "OpenAI API", "Tailwind CSS"],
     backgroundColor: "bg-[#CAE2D5]",
     textColor: "text-slateText",
-    previewLink: "dbreif.com",
-    clientHref: "https://dbreif.com",
+    previewLink: "dbrief.com",
+    clientHref: "https://dbrief.com",
     client: "Freelance",
   },
   {
