@@ -252,12 +252,14 @@ function Mission() {
   });
   return (
     <div className="w-full text-slateBg relative">
-      <div className="absolute inset-0 z-[10] pointer-events-none">
+      <div
+        ref={missionRef}
+        className="absolute inset-0 z-[10] pointer-events-none"
+      >
         <div
-          ref={missionRef}
           className={`w-full h-full bg-slateText ${
             missionInView
-              ? "animate-[radialBloomKeyDelay_3.5s_ease-in-out__forwards]"
+              ? "lg:animate-[radialBloomKeyDelay_3.5s_ease-in-out__forwards] animate-[radialBloomKey_2s_ease-in-out__forwards]"
               : ""
           }`}
           style={{}}

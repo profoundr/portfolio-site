@@ -70,6 +70,7 @@ type ContactFormValues = z.infer<typeof contactSchema>;
 
 export default function ContactPage() {
   const [result, setResult] = React.useState("");
+  const [isGoingBack, setIsGoingBack] = React.useState(false);
   const router = useRouter();
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
@@ -115,7 +116,17 @@ export default function ContactPage() {
   };
 
   const goBack = () => {
-    router.push("/");
+    setIsGoingBack(true);
+    setTimeout(() => {
+      // Try to go back first, if that fails or if we're at the beginning, go to home
+      if (window.history.length > 1) {
+        router.back();
+        // If we can't determine the previous route, default to home
+        // The router.back() will handle the navigation
+      } else {
+        router.push("/");
+      }
+    }, 1300); // Match the animation duration
   };
 
   return (
@@ -124,16 +135,12 @@ export default function ContactPage() {
     >
       <div className="fixed inset-0 z-[10] pointer-events-none">
         <div
-          className={`w-full h-full bg-black animate-radialBloom`}
+          className={`w-full h-full bg-black ${
+            isGoingBack ? "animate-radialBloomReverse" : "animate-radialBloom"
+          }`}
           style={{}}
         />
       </div>
-      <button
-        className="absolute top-[120px] lg:top-10 right-10 z-[200] text-slateBg"
-        onClick={goBack}
-      >
-        <X className="w-6 h-6" />
-      </button>
       <div className="w-full max-w-screen-2xl  z-[100]">
         <div className="w-full flex flex-col items-start rounded-2xl p-5">
           <h1 className="text-[60px] md:text-[80px] lg:text-[124px] leading-[60px] md:leading-[80px] lg:leading-[130px]  font-medium lg:pl-10 font-interTight z-[100]">
@@ -141,9 +148,18 @@ export default function ContactPage() {
           </h1>
           <FormProvider {...form}>
             <form
-              className="w-full lg:max-w-[1200px] mt-10 lg:mt-20"
+              className="w-full lg:max-w-[1200px] mt-10 lg:mt-20 relative"
               onSubmit={form.handleSubmit(onSubmit)}
             >
+              <button
+                className="absolute top-[-180px] lg:top-[-210px] -right-5 z-[200] text-slateBg p-5"
+                onClick={(e) => {
+                  e.preventDefault();
+                  goBack();
+                }}
+              >
+                <X className="w-6 h-6" />
+              </button>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
                   name="firstName"

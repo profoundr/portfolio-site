@@ -97,11 +97,9 @@ const config: Config = {
         radialBloomKey: {
           "0%": {
             clipPath: "circle(0% at 95% 5%)",
-            // opacity: '1'
           },
           "100%": {
             clipPath: "circle(150% at 95% 5%)",
-            // opacity: '0'
           },
         },
         radialBloomKeyDelay: {
@@ -119,6 +117,16 @@ const config: Config = {
             // opacity: '0'
           },
         },
+        radialBloomKeyReverse: {
+          "0%": {
+            clipPath: "circle(150% at 95% 5%)",
+            // opacity: '0'
+          },
+          "100%": {
+            clipPath: "circle(0% at 95% 5%)",
+            // opacity: '1'
+          },
+        },
       },
       animation: {
         fadeIn: "fadeIn 0.5s ease-out 1s forwards",
@@ -126,6 +134,7 @@ const config: Config = {
         aurora: "aurora 60s linear infinite",
         slideUp: "slideUp 0.5s ease-in-out forwards",
         radialBloom: "radialBloomKey 1.3s ease-in-out forwards",
+        radialBloomReverse: "radialBloomKeyReverse 1.3s ease-in-out forwards",
       },
       colors: {
         border: "hsl(var(--border))",

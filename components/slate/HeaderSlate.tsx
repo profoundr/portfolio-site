@@ -189,7 +189,7 @@ export default function Header() {
         {/* Hamburger Menu Button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="lg:hidden text-white p-2 sticky top-6 right-6 z-[1100]"
+          className="lg:hidden text-white p-2 sticky top-6 right-6 z-[2000]"
           aria-label="Toggle menu"
         >
           <div className="w-6 h-4 flex flex-col justify-between">
@@ -252,7 +252,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         <div
-          className={`fixed top-0 right-0 h-screen w-full bg-slateBg backdrop-blur-sm transform transition-all duration-300 ease-in-out lg:hidden z-[1000] opacity-100 ${
+          className={`fixed top-0 right-0 h-screen w-full bg-slateBg backdrop-blur-sm transform transition-all duration-300 ease-in-out lg:hidden z-[1100] opacity-100 ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >

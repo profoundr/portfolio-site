@@ -55,7 +55,7 @@ export default function Work() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className={`flex fixed lg:absolute top-6 right-6 items-center justify-center ${active.backgroundColor} ${active.textColor} rounded-full h-10 w-10 z-50 shadow-lg`}
+                className={`flex fixed lg:absolute top-6 right-6 items-center justify-center ${active.backgroundColor} ${active.textColor} rounded-full h-10 w-10 z-50`}
                 onClick={() => setActive(null)}
               >
                 <CloseIcon />
@@ -203,8 +203,7 @@ export default function Work() {
                         height={4000}
                         src={active.image}
                         alt={active.category}
-                        // className="w-full h-full object-cover scale-105"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover scale-105"
                       />
                     </motion.div>
                   </div>
@@ -252,8 +251,8 @@ export default function Work() {
                 <Image
                   src={item.image}
                   alt={item.category}
-                  width={2000}
-                  height={2000}
+                  width={4000}
+                  height={4000}
                   className="w-full h-auto hover:scale-105 transition-all duration-300"
                   // className="w-full h-auto"
                 />
