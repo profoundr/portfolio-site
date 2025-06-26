@@ -1,5 +1,6 @@
 import React from "react";
 import { LinkedIn, Upwork, GitHub, Twitter } from "../SVGs/icons";
+import Link from "next/link";
 
 function Footer() {
   return (
@@ -36,18 +37,18 @@ function Footer() {
         </div>
 
         <div className="flex flex-row gap-8 text-slateText">
-          <a href="/">
+          <Link href="https://www.upwork.com/freelancers/~017c0d83544493d743">
             <Upwork className="w-8 h-8" />
-          </a>
-          <a href="/">
+          </Link>
+          <Link href="https://www.linkedin.com/in/kedar-sawant-a02a551ba">
             <LinkedIn className="w-8 h-8" />
-          </a>
-          <a href="/">
+          </Link>
+          <Link href="https://github.com/profoundr">
             <GitHub className="w-8 h-8" />
-          </a>
-          <a href="/">
+          </Link>
+          <Link href="https://x.com/KedarSawant12">
             <Twitter className="w-8 h-8" />
-          </a>
+          </Link>
         </div>
         <span className="text-slateText text-[11px] mt-5 block lg:hidden">
           Copywrite © {new Date().getFullYear()} Kedar Sawant
