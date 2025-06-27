@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  SiShopify,
   SiSupabase,
   SiGraphql,
   SiAlgolia,
@@ -10,6 +9,7 @@ import {
   SiFigma,
   SiPostman,
 } from "react-icons/si";
+import { VscVscode } from "react-icons/vsc";
 
 export function coPilot({ className }: { className?: string }) {
   return (
@@ -322,16 +322,7 @@ export function GoogleCloud({ className }: { className?: string }) {
 }
 
 export function VSCode({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className={`${className}`}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-    >
-      <path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-.64-.231.999.999 0 0 0-.64.231L.47 8.295a1.001 1.001 0 0 0 0 1.646l1.44 1.095 4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1 1 0 0 0 24 12.06V3.939a1 1 0 0 0-.85-.352z" />
-    </svg>
-  );
+  return <VscVscode className={className} />;
 }
 
 export function Figma({ className }: { className?: string }) {

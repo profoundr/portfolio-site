@@ -16,8 +16,13 @@ import {
   Figma,
   Postman,
   GitHub,
+  Twitter,
+  LinkedIn,
+  Upwork,
 } from "@/components/SVGs/icons";
+import { CardStack } from "@/components/ui/card-stack";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -85,15 +90,38 @@ export default function AboutPage() {
 }
 
 function About() {
+  const profileCards = [
+    {
+      id: 1,
+      image: "/about-images/profile.jpeg",
+    },
+    {
+      id: 2,
+      image: "/about-images/profile2.jpeg",
+    },
+    {
+      id: 3,
+      image: "/about-images/profile3.jpeg",
+    },
+    {
+      id: 4,
+      image: "/about-images/profile4.jpeg",
+    },
+    {
+      id: 5,
+      image: "/about-images/profile5.jpeg",
+    },
+  ];
+
   return (
-    <div className="flex flex-col lg:flex-row gap-10 w-full max-w-screen-2xl mx-auto  py-10 lg:py-20 px-5 lg:px-16 text-slateText bg-slateBg">
-      <div>
+    <div className="flex flex-col lg:flex-row gap-20 w-full max-w-screen-2xl mx-auto  py-10 lg:py-20 px-5 lg:px-16 text-slateText bg-slateBg">
+      <div className="flex flex-col gap-10">
         <div className="overflow-hidden">
           <h1 className="text-[60px] md:text-[80px] lg:text-[124px] leading-[60px] md:leading-[80px] lg:leading-[130px]  font-medium lg:pl-10 font-interTight opacity-0 animate-[slideUpBlur_0.5s_ease-out_1s_forwards]">
             About
           </h1>
         </div>
-        <p className="text-base lg:text-xl font-medium mt-10 font-interTight !leading-relaxed tracking-wide  lg:max-w-[750px] lg:pl-10 animate-[fadeIn65_0.5s_ease-out_1.5s_forwards] opacity-0">
+        <p className="text-base lg:text-xl font-medium font-interTight !leading-relaxed tracking-wide  lg:max-w-[750px] lg:pl-10 animate-[fadeIn65_0.5s_ease-out_1.5s_forwards] opacity-0">
           With 4 years of hands-on experience building full-stack web products,
           I specialize in crafting performant, maintainable
           applications—primarily with Next.js. I&apos;ve worked on projects
@@ -102,15 +130,28 @@ function About() {
           it&apos;s frontend or backend, my focus is on writing clean,
           understandable code that scales with teams and timelines.
         </p>
+        <div className="flex flex-row gap-8 text-slateText/65 mt-10 lg:mt-auto lg:pl-10 animate-[fadeIn65_0.5s_ease-out_1.5s_forwards] opacity-0">
+          <Link href="https://www.upwork.com/freelancers/~017c0d83544493d743">
+            <Upwork className="w-8 h-8 opacity-65" />
+          </Link>
+          <Link href="https://www.linkedin.com/in/kedar-sawant-a02a551ba">
+            <LinkedIn className="w-8 h-8" />
+          </Link>
+          <Link href="https://github.com/profoundr">
+            <GitHub className="w-8 h-8" />
+          </Link>
+          <Link href="https://x.com/KedarSawant12">
+            <Twitter className="w-8 h-8" />
+          </Link>
+        </div>
       </div>
-      <div className="">
-        <Image
-          src="/test-image.png"
-          alt="About"
-          width={500}
-          height={500}
-          className="animate-[fadeIn_0.5s_ease-out_1.5s_forwards] opacity-0"
-        />
+      <div className="flex flex-col gap-10">
+        <div className="animate-[fadeIn_0.5s_ease-out_1.5s_forwards] opacity-0">
+          <CardStack items={profileCards} />
+        </div>
+        <span className="text-sm text-slateText/65 italic animate-[fadeIn_0.5s_ease-out_1.5s_forwards] opacity-0 text-end">
+          Scroll through my story
+        </span>
       </div>
     </div>
   );
