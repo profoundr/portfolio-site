@@ -117,16 +117,7 @@ export default function ContactForm() {
 
   const goBack = () => {
     setIsGoingBack(true);
-    setTimeout(() => {
-      // Try to go back first, if that fails or if we're at the beginning, go to home
-      if (window.history.length > 1) {
-        router.back();
-        // If we can't determine the previous route, default to home
-        // The router.back() will handle the navigation
-      } else {
-        router.push("/");
-      }
-    }, 1300); // Match the animation duration
+    router.push("/");
   };
 
   return (
