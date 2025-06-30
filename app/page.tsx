@@ -1,10 +1,41 @@
 import Process from "@/components/slate/Process";
 import Services from "@/components/slate/Services";
 import Work from "@/components/slate/Work";
-import Image from "next/image";
+import { Metadata } from "next";
 import React from "react";
 
-export default function page() {
+export const metadata: Metadata = {
+  title: "Kedar - Full Stack Developer",
+  description:
+    "Hey! I'm Kedar, and I work with experienced designers to build digital products that are beautiful, fast, and reliable.",
+  keywords: [
+    "Kedar",
+    "Web Development",
+    "Full Stack Developer",
+    "Freelance Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Web Design",
+    "UI/UX Design",
+    "Frontend Development",
+    "Backend Development",
+    "Web Development Agency",
+    "Web Development Services",
+    "Web Development Company",
+    "Shopify Agency",
+    "Shopify Developer",
+    "Shopify Development",
+    "Shopify Development Services",
+    "Shopify Development Company",
+    "Shopify Development Agency",
+    "SAAS Development",
+    "SAAS Development Services",
+    "SAAS Development Company",
+    "SAAS Development Agency",
+  ],
+};
+
+export default function HomePage() {
   return (
     <div>
       <Hero />
