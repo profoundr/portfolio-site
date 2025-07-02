@@ -328,7 +328,7 @@ const workItems = [
       "Handled secure, server-side processing without public APIs",
       "Ensured clean UX for both interviewers and contributors",
     ],
-    technologies: ["Next.js", "Supabase", "OpenAI API", "Tailwind CSS"],
+    technologies: ["React.js", "Supabase", "OpenAI API", "Tailwind CSS"],
     backgroundColor: "bg-[#CAE2D5]",
     textColor: "text-slateText",
     previewLink: "dbrief.com",
