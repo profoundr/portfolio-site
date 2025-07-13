@@ -7,7 +7,7 @@ function Footer() {
     <div className=" bg-slateBg w-full py-20 border-t border-border px-5">
       <div className="flex flex-col lg:flex-row items-baseline justify-between max-w-screen-2xl mx-auto gap-8">
         <div className="text-slateText flex flex-col items-start gap-8 text-sm">
-          <span className="text-slateText text-[40px] font-medium leading-[40px]]">
+          <span className="text-slateText text-[40px] font-medium leading-[40px]">
             Let&apos;s Work Together
           </span>
           <a
