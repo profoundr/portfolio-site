@@ -30,7 +30,7 @@ export default function AboutPage() {
   return (
     <div className="w-full">
       <About />
-      <Mission />
+      {/* <Mission /> */}
       <Techstack />
       {/* <div className="flex flex-col gap-10">
           <div className="overflow-hidden">
@@ -114,14 +114,15 @@ function About() {
   ];
 
   return (
-    <div className="flex flex-col lg:flex-row gap-20 w-full max-w-screen-2xl mx-auto  py-10 lg:py-20 px-5 lg:px-16 text-slateText bg-slateBg">
-      <div className="flex flex-col gap-10">
-        <div className="overflow-hidden">
-          <h1 className="text-[60px] md:text-[80px] lg:text-[124px] leading-[60px] md:leading-[80px] lg:leading-[130px]  font-medium lg:pl-10 font-interTight opacity-0 animate-[slideUpBlur_0.5s_ease-out_1s_forwards]">
-            About
-          </h1>
-        </div>
-        <p className="text-base lg:text-xl font-medium font-interTight !leading-relaxed tracking-wide  lg:max-w-[750px] lg:pl-10 animate-[fadeIn65_0.5s_ease-out_1.5s_forwards] opacity-0">
+    <div className="w-full bg-slateBg">
+      <div className="flex flex-col lg:flex-row gap-20 w-full max-w-screen-2xl mx-auto  py-10 lg:py-20 px-5 lg:px-16 text-slateText">
+        <div className="flex flex-col gap-10">
+          <div className="overflow-hidden">
+            <h1 className="text-[60px] md:text-[80px] lg:text-[124px] leading-[60px] md:leading-[80px] lg:leading-[130px]  font-medium lg:pl-10 font-interTight opacity-0 animate-[slideUpBlur_0.5s_ease-out_1s_forwards]">
+              About
+            </h1>
+          </div>
+          {/* <p className="text-base lg:text-xl font-medium font-interTight !leading-relaxed tracking-wide  lg:max-w-[750px] lg:pl-10 animate-[fadeIn65_0.5s_ease-out_1.5s_forwards] opacity-0">
           With 4 years of hands-on experience building full-stack web products,
           I specialize in crafting performant, maintainable
           applications—primarily with Next.js. I&apos;ve worked on projects
@@ -129,29 +130,48 @@ function About() {
           I&apos;m always quick to get up to speed with new tech. Whether
           it&apos;s frontend or backend, my focus is on writing clean,
           understandable code that scales with teams and timelines.
-        </p>
-        <div className="flex flex-row gap-8 text-slateText/65 mt-10 lg:mt-auto lg:pl-10 animate-[fadeIn65_0.5s_ease-out_1.5s_forwards] opacity-0">
-          <Link href="https://www.upwork.com/freelancers/~017c0d83544493d743">
-            <Upwork className="w-8 h-8 opacity-65" />
-          </Link>
-          <Link href="https://www.linkedin.com/in/kedar-sawant-a02a551ba">
-            <LinkedIn className="w-8 h-8" />
-          </Link>
-          <Link href="https://github.com/profoundr">
-            <GitHub className="w-8 h-8" />
-          </Link>
-          <Link href="https://x.com/KedarSawant12">
-            <Twitter className="w-8 h-8" />
-          </Link>
+        </p> */}
+          <p className="text-base lg:text-xl font-medium font-interTight !leading-relaxed tracking-wide  lg:max-w-[750px] lg:pl-10 animate-[fadeIn65_0.5s_ease-out_1.5s_forwards] opacity-0">
+            I’ve spent the last 4 years working as a full-stack software
+            development engineer, building and shipping production-grade web
+            products across multiple industries — including healthcare,
+            e-commerce, crypto, and SaaS.
+          </p>
+
+          <p className="text-base lg:text-xl font-medium font-interTight !leading-relaxed tracking-wide  lg:max-w-[750px] lg:pl-10 -mt-5 animate-[fadeIn65_0.5s_ease-out_1.5s_forwards] opacity-0">
+            More recently, my work has focused on engineering AI-powered
+            applications, including taking a complete AI SaaS product from MVP
+            to production for a client.
+          </p>
+          <p className="text-base lg:text-xl font-medium font-interTight !leading-relaxed tracking-wide  lg:max-w-[750px] lg:pl-10 -mt-5 animate-[fadeIn65_0.5s_ease-out_1.5s_forwards] opacity-0">
+            I ramp up quickly on new technologies and work comfortably across
+            the stack, from frontend interfaces to backend systems. My focus is
+            on writing clean, understandable code that scales with both the
+            product and the team over time.
+          </p>
+          <div className="flex flex-row gap-8 text-slateText/65 mt-10 lg:mt-auto lg:pl-10 animate-[fadeIn65_0.5s_ease-out_1.5s_forwards] opacity-0">
+            <Link href="https://www.upwork.com/freelancers/~017c0d83544493d743">
+              <Upwork className="w-8 h-8 opacity-65" />
+            </Link>
+            <Link href="https://www.linkedin.com/in/kedar-sawant-a02a551ba">
+              <LinkedIn className="w-8 h-8" />
+            </Link>
+            <Link href="https://github.com/profoundr">
+              <GitHub className="w-8 h-8" />
+            </Link>
+            <Link href="https://x.com/KedarSawant12">
+              <Twitter className="w-8 h-8" />
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col gap-10">
-        <div className="animate-[fadeIn_0.5s_ease-out_1.5s_forwards] opacity-0">
-          <CardStack items={profileCards} />
+        <div className="flex flex-col gap-10">
+          <div className="animate-[fadeIn_0.5s_ease-out_1.5s_forwards] opacity-0">
+            <CardStack items={profileCards} />
+          </div>
+          <span className="text-sm text-slateText/65 italic animate-[fadeIn_0.5s_ease-out_1.5s_forwards] opacity-0 text-end">
+            Scroll through my story
+          </span>
         </div>
-        <span className="text-sm text-slateText/65 italic animate-[fadeIn_0.5s_ease-out_1.5s_forwards] opacity-0 text-end">
-          Scroll through my story
-        </span>
       </div>
     </div>
   );
@@ -165,120 +185,134 @@ function Techstack() {
   });
 
   return (
-    <div
-      ref={techstackRef}
-      className={`w-full max-w-screen-2xl mx-auto flex flex-col gap-10 transition-all duration-300 py-10 lg:py-20 px-5 text-slateText bg-slateBg ${
-        techstackInView
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-8"
-      }`}
-    >
-      <h2
-        className={`text-[50px] md:text-[65px] lg:text-[85px] leading-[90px] font-medium lg:pl-10 font-interTight mt-20 opacity-0 animate-[slideUpBlur_0.5s_ease-out_3s_forwards] `}
-      >
-        Techstack
-      </h2>
-
+    <div className="w-full text-slateBg relative">
       <div
-        className={`flex flex-col lg:flex-row gap-10 w-full transition-all duration-300 ${
-          techstackInView
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-8"
-        }`}
+        ref={techstackRef}
+        className="absolute inset-0 z-[10] pointer-events-none"
       >
-        {/* Frontend */}
-        <div className="border border-border rounded-lg grid grid-cols-4 p-2 md:px-4 md:pt-4 md:pb-3 justify-items-center items-end relative w-full">
-          <div className="w-fit flex flex-col items-center justify-between">
-            <NextJS className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Next.js</span>
-          </div>
-          <div className="w-fit flex flex-col items-center justify-between">
-            <Remix className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Remix</span>
-          </div>
-          <div className="w-fit flex flex-col items-center gap-2">
-            <ShopifyHydrogen className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Shopify Hydrogen</span>
-          </div>
-          <div className="w-fit flex flex-col items-center justify-between">
-            <TailwindCSS className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Tailwind CSS</span>
-          </div>
-          <div className="bg-white text-[13px] text-stateText leading-none h-fit position absolute top-[-6.5px] left-4 px-1">
-            Frontend
-          </div>
-        </div>
-
-        {/* Backend / Data */}
-        <div className="border border-border rounded-lg grid grid-cols-4 p-2 md:px-4 md:pt-4 md:pb-3 justify-items-center items-end relative w-full">
-          <div className="w-fit flex flex-col items-center justify-between">
-            <Supabase className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Supabase</span>
-          </div>
-          <div className="w-fit flex flex-col items-center justify-between">
-            <DirectusCMS className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Directus</span>
-          </div>
-          <div className="w-fit flex flex-col items-center gap-2">
-            <GraphQL className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">GraphQL</span>
-          </div>
-          <div className="w-fit flex flex-col items-center justify-between">
-            <Algolia className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Algolia</span>
-          </div>
-          <div className="bg-white text-[13px] text-stateText leading-none h-fit position absolute top-[-6.5px] left-4 px-1">
-            Backend / Data
-          </div>
-        </div>
+        <div
+          className={`w-full h-full bg-slateText ${
+            techstackInView
+              ? "lg:animate-[radialBloomKeyDelay_3.5s_ease-in-out__forwards] animate-[radialBloomKey_2s_ease-in-out__forwards]"
+              : ""
+          }`}
+          style={{}}
+        />
       </div>
-
       <div
-        className={`flex flex-col lg:flex-row gap-10 w-full transition-all duration-300 delay-600 ${
+        className={`w-full max-w-screen-2xl mx-auto flex flex-col gap-10 transition-all duration-300 py-10 lg:py-20 px-5 z-[1000] relative ${
           techstackInView
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-8"
         }`}
       >
-        {/* Cloud & Hosting */}
-        <div className="border border-border rounded-lg grid grid-cols-3 p-2 md:px-4 md:pt-4 md:pb-3 justify-items-center items-end relative w-full">
-          <div className="w-fit flex flex-col items-center justify-between">
-            <Vercel className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Vercel</span>
+        <h2
+          className={`text-[50px] md:text-[65px] lg:text-[85px] leading-[90px] font-medium lg:pl-10 font-interTight mt-20 opacity-0 animate-[slideUpBlur_0.5s_ease-out_3s_forwards] `}
+        >
+          Techstack
+        </h2>
+
+        <div
+          className={`flex flex-col lg:flex-row gap-10 w-full transition-all duration-300 ${
+            techstackInView
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
+          }`}
+        >
+          {/* Frontend */}
+          <div className="border border-white rounded-lg grid grid-cols-4 p-2 md:px-4 md:pt-4 md:pb-3 justify-items-center items-end relative w-full z-10">
+            <div className="w-fit flex flex-col items-center justify-between">
+              <NextJS className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Next.js</span>
+            </div>
+            <div className="w-fit flex flex-col items-center justify-between">
+              <Remix className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Remix</span>
+            </div>
+            <div className="w-fit flex flex-col items-center gap-2">
+              <ShopifyHydrogen className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Shopify Hydrogen</span>
+            </div>
+            <div className="w-fit flex flex-col items-center justify-between">
+              <TailwindCSS className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Tailwind CSS</span>
+            </div>
+            <div className="bg-slateText bg-opacity-100 text-[13px] text-slateBg leading-none h-fit position absolute top-[-6.5px] left-4 px-1 z-20">
+              Frontend
+            </div>
           </div>
-          <div className="w-fit flex flex-col items-center justify-between">
-            <Netlify className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Netlify</span>
-          </div>
-          <div className="w-fit flex flex-col items-center gap-2">
-            <GoogleCloud className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Google Cloud</span>
-          </div>
-          <div className="bg-white text-[13px] text-stateText leading-none h-fit position absolute top-[-6.5px] left-4 px-1">
-            Cloud & Hosting
+
+          {/* Backend / Data */}
+          <div className="border border-white rounded-lg grid grid-cols-4 p-2 md:px-4 md:pt-4 md:pb-3 justify-items-center items-end relative w-full">
+            <div className="w-fit flex flex-col items-center justify-between">
+              <Supabase className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Supabase</span>
+            </div>
+            <div className="w-fit flex flex-col items-center justify-between">
+              <DirectusCMS className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Directus</span>
+            </div>
+            <div className="w-fit flex flex-col items-center gap-2">
+              <GraphQL className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">GraphQL</span>
+            </div>
+            <div className="w-fit flex flex-col items-center justify-between">
+              <Algolia className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Algolia</span>
+            </div>
+            <div className="bg-slateText text-[13px] text-slateBg leading-none h-fit position absolute top-[-6.5px] left-4 px-1">
+              Backend / Data
+            </div>
           </div>
         </div>
 
-        {/* Tools */}
-        <div className="border border-border rounded-lg grid grid-cols-4 p-2 md:px-4 md:pt-4 md:pb-3 justify-items-center items-end relative w-full">
-          <div className="w-fit flex flex-col items-center justify-between">
-            <GitHub className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">GitHub</span>
+        <div
+          className={`flex flex-col lg:flex-row gap-10 w-full transition-all duration-300 delay-600 ${
+            techstackInView
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
+          }`}
+        >
+          {/* Cloud & Hosting */}
+          <div className="border border-white rounded-lg grid grid-cols-3 p-2 md:px-4 md:pt-4 md:pb-3 justify-items-center items-end relative w-full">
+            <div className="w-fit flex flex-col items-center justify-between">
+              <Vercel className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Vercel</span>
+            </div>
+            <div className="w-fit flex flex-col items-center justify-between">
+              <Netlify className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Netlify</span>
+            </div>
+            <div className="w-fit flex flex-col items-center gap-2">
+              <GoogleCloud className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Google Cloud</span>
+            </div>
+            <div className="bg-slateText text-[13px] text-slateBg leading-none h-fit position absolute top-[-6.5px] left-4 px-1">
+              Cloud & Hosting
+            </div>
           </div>
-          <div className="w-fit flex flex-col items-center justify-between">
-            <VSCode className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">VS Code</span>
-          </div>
-          <div className="w-fit flex flex-col items-center gap-2">
-            <Figma className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Figma</span>
-          </div>
-          <div className="w-fit flex flex-col items-center justify-between">
-            <Postman className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateGray" />
-            <span className="text-[12px] mx-auto">Postman</span>
-          </div>
-          <div className="bg-white text-[13px] text-stateText leading-none h-fit position absolute top-[-6.5px] left-4 px-1">
-            Tools
+
+          {/* Tools */}
+          <div className="border border-white rounded-lg grid grid-cols-4 p-2 md:px-4 md:pt-4 md:pb-3 justify-items-center items-end relative w-full">
+            <div className="w-fit flex flex-col items-center justify-between">
+              <GitHub className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">GitHub</span>
+            </div>
+            <div className="w-fit flex flex-col items-center justify-between">
+              <VSCode className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">VS Code</span>
+            </div>
+            <div className="w-fit flex flex-col items-center gap-2">
+              <Figma className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Figma</span>
+            </div>
+            <div className="w-fit flex flex-col items-center justify-between">
+              <Postman className="mb-2 md:w-14 md:h-14 w-8 h-8 text-slateBg" />
+              <span className="text-[12px] mx-auto">Postman</span>
+            </div>
+            <div className="bg-slateText text-[13px] text-slateBg leading-none h-fit position absolute top-[-6.5px] left-4 px-1">
+              Tools
+            </div>
           </div>
         </div>
       </div>

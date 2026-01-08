@@ -209,7 +209,7 @@ export default function Header() {
             Work
             <span className="absolute bottom-2.5 left-0 right-0 w-0 h-[2px] bg-slateText/50 transition-all duration-300 group-hover:w-full"></span>
           </Link>
-          <Link
+          {/* <Link
             href="/#services"
             className="text-slateText text-lg font-medium opacity-80 transition-all duration-300 relative group px-1 py-3"
           >
@@ -222,7 +222,7 @@ export default function Header() {
           >
             Process
             <span className="absolute bottom-2.5 left-0 right-0 w-0 h-[2px] bg-slateText/50 transition-all duration-300 group-hover:w-full"></span>
-          </Link>
+          </Link> */}
           <Link
             href="/about"
             className="text-slateText text-lg font-medium opacity-80 transition-all duration-300 relative group px-1 py-3"
