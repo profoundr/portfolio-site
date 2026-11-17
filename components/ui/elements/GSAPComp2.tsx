@@ -7,6 +7,7 @@ import React, {
   useCallback,
   useMemo,
   useImperativeHandle,
+  useSyncExternalStore,
 } from "react";
 import { gsap, Power3, Power4, Elastic } from "gsap";
 
@@ -24,6 +25,9 @@ import { gsap, Power3, Power4, Elastic } from "gsap";
 // }
 
 // Helper to get window size
+const SERVER_WIN_SIZE = { width: 0, height: 0 };
+let cachedWinSize = SERVER_WIN_SIZE;
+
 const getWinSize = () => {
   if (typeof window !== "undefined") {
     return {
@@ -31,7 +35,24 @@ const getWinSize = () => {
       height: window.innerHeight,
     };
   }
-  return { width: 0, height: 0 }; // Default for server-side
+  return SERVER_WIN_SIZE; // Default for server-side
+};
+
+const subscribeToWindowSize = (onStoreChange: () => void) => {
+  window.addEventListener("resize", onStoreChange);
+  return () => window.removeEventListener("resize", onStoreChange);
+};
+
+const getWindowSizeSnapshot = () => {
+  const next = getWinSize();
+  if (
+    cachedWinSize.width === next.width &&
+    cachedWinSize.height === next.height
+  ) {
+    return cachedWinSize;
+  }
+  cachedWinSize = next;
+  return cachedWinSize;
 };
 
 // Helper for mouse position (relative to document)
@@ -790,8 +811,12 @@ const DiagonalSlideshow: React.FC<DiagonalSlideshowProps> = ({
   slidesData = defaultSlidesData,
   contentData = defaultContentData,
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [winsize, setWinsize] = useState({ width: 0, height: 0 });
+  const [isLoading, setIsLoading] = useState(() => slidesData.length > 0);
+  const winsize = useSyncExternalStore(
+    subscribeToWindowSize,
+    getWindowSizeSnapshot,
+    () => SERVER_WIN_SIZE
+  );
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isContentOpen, setIsContentOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -855,9 +880,6 @@ const DiagonalSlideshow: React.FC<DiagonalSlideshowProps> = ({
   }, [winsize]);
 
   useEffect(() => {
-    // Set initial window size on client mount
-    setWinsize(getWinSize());
-
     document.documentElement.classList.add("js");
     const supportsCssVars = () => {
       const style = document.createElement("style");
@@ -892,16 +914,10 @@ const DiagonalSlideshow: React.FC<DiagonalSlideshowProps> = ({
         }
       };
     });
-    if (images.length === 0) {
-      setIsLoading(false);
-      document.body.classList.remove("loading");
-    }
   }, [slidesData]);
 
   useEffect(() => {
     const handleResize = () => {
-      setWinsize(getWinSize());
-      // Recalculate positions or trigger re-render if necessary
       if (isContentOpen && decoRef.current) {
         gsap.set(decoRef.current, {
           scaleX: getWinSize().width / decoRef.current.offsetWidth,

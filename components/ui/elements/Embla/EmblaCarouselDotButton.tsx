@@ -1,10 +1,12 @@
 import React, {
   ComponentPropsWithRef,
   useCallback,
-  useEffect,
-  useState
+  useRef,
+  useSyncExternalStore
 } from 'react'
 import { EmblaCarouselType } from 'embla-carousel'
+
+const EMPTY_SNAPS: number[] = []
 
 type UseDotButtonType = {
   selectedIndex: number
@@ -15,8 +17,40 @@ type UseDotButtonType = {
 export const useDotButton = (
   emblaApi: EmblaCarouselType | undefined
 ): UseDotButtonType => {
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+  const snapsCache = useRef<number[]>(EMPTY_SNAPS)
+
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => {
+      if (!emblaApi) return () => {}
+      emblaApi.on('reInit', onStoreChange).on('select', onStoreChange)
+      return () => {
+        emblaApi.off('reInit', onStoreChange).off('select', onStoreChange)
+      }
+    },
+    [emblaApi]
+  )
+
+  const selectedIndex = useSyncExternalStore(
+    subscribe,
+    () => (emblaApi ? emblaApi.selectedScrollSnap() : 0),
+    () => 0
+  )
+  const scrollSnaps = useSyncExternalStore(
+    subscribe,
+    () => {
+      const next = emblaApi ? emblaApi.scrollSnapList() : EMPTY_SNAPS
+      const prev = snapsCache.current
+      if (
+        prev.length === next.length &&
+        prev.every((snap, index) => snap === next[index])
+      ) {
+        return prev
+      }
+      snapsCache.current = next
+      return next
+    },
+    () => EMPTY_SNAPS
+  )
 
   const onDotButtonClick = useCallback(
     (index: number) => {
@@ -25,22 +59,6 @@ export const useDotButton = (
     },
     [emblaApi]
   )
-
-  const onInit = useCallback((emblaApi: EmblaCarouselType) => {
-    setScrollSnaps(emblaApi.scrollSnapList())
-  }, [])
-
-  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-    setSelectedIndex(emblaApi.selectedScrollSnap())
-  }, [])
-
-  useEffect(() => {
-    if (!emblaApi) return
-
-    onInit(emblaApi)
-    onSelect(emblaApi)
-    emblaApi.on('reInit', onInit).on('reInit', onSelect).on('select', onSelect)
-  }, [emblaApi, onInit, onSelect])
 
   return {
     selectedIndex,
