@@ -8,37 +8,37 @@ import {
   Icon6,
 } from "./SVGs/benefits-icons";
 
-export const BenefitsBento = () => {
-  const BenefitCard = ({
-    icon: Icon,
-    title,
-    description,
-    className = "",
-  }: {
-    icon: React.ComponentType<{ className?: string }>;
-    title: string;
-    description: string;
-    className?: string;
-  }) => (
-    <div
-      className={`flex flex-col justify-between items-start w-full border border-border p-8 bg-backgroundSecondary text-white ${className}`}
-    >
-      <div className="flex justify-center self-start items-center w-12 h-12 mr-6 border border-borderSecondary rounded-lg bg-white mb-9">
-        <div className="w-8 h-8">
-          <Icon className="text-fontTertiary" />
-        </div>
-      </div>
-      <div className="flex flex-col gap-2 text-fontTertiary">
-        <h3 className="text-3xl leading-tight font-medium tracking-tight">
-          {title}
-        </h3>
-        <div className="opacity-65 text-base leading-tight font-normal tracking-tight">
-          {description}
-        </div>
+const BenefitCard = ({
+  icon: Icon,
+  title,
+  description,
+  className = "",
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  description: string;
+  className?: string;
+}) => (
+  <div
+    className={`flex flex-col justify-between items-start w-full border border-border p-8 bg-backgroundSecondary text-white ${className}`}
+  >
+    <div className="flex justify-center self-start items-center w-12 h-12 mr-6 border border-borderSecondary rounded-lg bg-white mb-9">
+      <div className="w-8 h-8">
+        <Icon className="text-fontTertiary" />
       </div>
     </div>
-  );
+    <div className="flex flex-col gap-2 text-fontTertiary">
+      <h3 className="text-3xl leading-tight font-medium tracking-tight">
+        {title}
+      </h3>
+      <div className="opacity-65 text-base leading-tight font-normal tracking-tight">
+        {description}
+      </div>
+    </div>
+  </div>
+);
 
+export const BenefitsBento = () => {
   return (
     <div className="w-full max-w-screen-2xl px-16 py-[112px] bg-white mx-auto border border-border border-t-0">
       <p className="text-base rounded-lg border border-border px-4 py-2 font-medium font-interTight text-fontTertiary leading-none uppercase w-fit opacity-70 mb-4">

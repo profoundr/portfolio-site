@@ -72,7 +72,12 @@ const FramerInfiniteCarousel: React.FC<InfiniteScrollCarouselProps> = ({
   items,
   itemsPerLoad = 3,
 }) => {
-  const [displayedItems, setDisplayedItems] = useState<React.ReactNode[]>([]);
+  const [displayedItems, setDisplayedItems] = useState<React.ReactNode[]>(() =>
+    Array.from({ length: itemsPerLoad }, (_, index) => {
+      const itemIndex = index % items.length;
+      return items[itemIndex];
+    })
+  );
 
   const getMoreItems = () => {
     const currentLength = displayedItems.length;
@@ -84,11 +89,6 @@ const FramerInfiniteCarousel: React.FC<InfiniteScrollCarouselProps> = ({
 
     setDisplayedItems((prev) => [...prev, ...newItems]);
   };
-
-  useEffect(() => {
-    // Load initial items
-    getMoreItems();
-  }, []);
 
   return (
     <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "2rem" }}>

@@ -25,11 +25,6 @@ export const CardStack = ({
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    startFlipping();
-    return () => clearInterval(interval);
-  }, []);
-
-  const startFlipping = () => {
     interval = setInterval(() => {
       if (!isAnimating) {
         setIsAnimating(true);
@@ -44,7 +39,10 @@ export const CardStack = ({
         }, 600); // Match animation duration
       }
     }, 5000);
-  };
+    return () => clearInterval(interval);
+    // The flip timer is started once on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="relative w-[360px] h-[550px]">
